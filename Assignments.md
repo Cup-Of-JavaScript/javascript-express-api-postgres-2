@@ -160,7 +160,7 @@ BODY: None
 
 This endpoint returns all the information for a specific book.
 
-Example output:
+Example output for http://localhost:5150/ex1/books/1:
 
 ```
 {
@@ -171,6 +171,10 @@ Example output:
 ```
 
 # Ex. 6
+
+
+
+
 
 # Ex. 7
 
