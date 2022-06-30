@@ -250,7 +250,6 @@ BODY:
 }
 ```
 
-
 This endpoint adds a new bookstore to the `bookstore` table.  It returns the newly created of the bookstore in the response.
 
 Example output:
@@ -261,7 +260,7 @@ Example output:
 }
 ```
 
-# Ex. 9  Update Person Name
+# Ex. 9 Update Person Name
 Create the following API endpoint:
 
 ```
@@ -289,5 +288,18 @@ Example output:
 }
 ```
 
-# Ex. 10
+# Ex. 10 Delete Person
+Create the following API endpoint:
 
+```
+Method: DELETE
+URL:  http://localhost:5152/ex10/persons/{id}
+BODY: None
+```
+
+This endpoint deletes a `person` from the `person` table for the id specified.
+
+Output:
+```
+OK
+```

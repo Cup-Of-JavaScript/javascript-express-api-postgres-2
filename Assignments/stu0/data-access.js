@@ -29,7 +29,7 @@ const SELECT_PERSON_AT_BOOKSTORE = `
 const INSERT_PERSON = "insert into person (person_type_id, book_store_id, first_name, last_name, dob) values ($1, $2, $3, $4, $5) returning person_id";
 const INSERT_BOOKSTORE = "insert into book_store (book_store_name) values ($1) returning book_store_id";
 const UPDATE_PERSON = "update person set first_name = $1, last_name = $2 where person_id = $3"
-
+const DELETE_PERSON = "delete from person where person_id = $1"
 
 const pool = new Pool({
   user: "postgres",
@@ -136,6 +136,17 @@ exports.updatePerson = async (personId, firstName, lastName) => {
     try {
         await pool.query(UPDATE_PERSON, [firstName, lastName, personId]);
         retval = await this.getPerson(personId)
+    } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}
+
+exports.deletePerson = async (personId) => {
+    let retval = null;
+    try {
+        await pool.query(DELETE_PERSON, [personId]);
+        retval = "OK"
     } catch (err) {
         console.error(err);
     }

@@ -109,6 +109,16 @@ app.put('/ex9/persons', cors(corsOptions), async (req, res) => {
     res.send(updatedPerson);
 });
 
+//
+// DELETE /ex10/persons/:id
+//
+
+app.delete('/ex10/persons/:id', cors(corsOptions), async (req, res) => { 
+    let personId = req.params['id']
+    let response = await dataAccess.deletePerson(personId)
+    res.send(response);
+});
+
 app.listen(PORT, () => {
     console.log(`Local Web API Express Server Running on Port: ${PORT}`);
 });
