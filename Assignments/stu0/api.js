@@ -26,7 +26,7 @@ app.use(cors());
 // GET /persons/:id
 //
 
-app.get('/persons/:id', cors(corsOptions), async (req, res) => { 
+app.get('/ex1/persons/:id', cors(corsOptions), async (req, res) => { 
     let person = await dataAccess.getPerson(req.params['id'])
     res.send(person);
 });
