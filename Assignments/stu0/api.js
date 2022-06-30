@@ -49,9 +49,24 @@ app.get('/ex3/persons', cors(corsOptions), async (req, res) => {
     res.send(persons);
 });
 
+//
+// GET /ex4/books
+//
+
+app.get('/ex4/books', cors(corsOptions), async (req, res) => { 
+    let persons = await dataAccess.getBooks()
+    res.send(persons);
+});
 
 
+//
+// GET /ex5/books/:id
+//
 
+app.get('/ex5/books/:id', cors(corsOptions), async (req, res) => { 
+    let persons = await dataAccess.getBook(req.params['id'])
+    res.send(persons);
+});
 
 
 app.listen(PORT, () => {
