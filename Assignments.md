@@ -9,6 +9,8 @@ GET http://localhost:5150/ex2/persons/1?type=person
 ...
 ```
 
+Be sure to run the `SQL\create-bookstore-db.sql` script to create the tables and data that this API will consume.
+
 # Ex. 1 Get All People
 Create the following API endpoint:
 
@@ -52,7 +54,7 @@ URL:  http://localhost:5150/ex1/persons/{userId}
 BODY: None
 ```
 
-This endpoint returns all the information for a particular person:
+This endpoint returns all the information for a particular person from the `person` table.
 
 Example Output for  http://localhost:5150/ex1/persons/1: 
 ```
@@ -75,7 +77,7 @@ URL:  http://localhost:5150/ex1/persons?personType={Cashier|Manager|Stock%20Pers
 BODY: None
 ```
 
-This endpoint returns all of the types of people for the specified type.
+This endpoint returns all of the types of people for the specified type. This endpoint must join the `person_type` and `person` tables.
 
 Example Output for  http://localhost:5150/ex1/persons?personType=Manager: 
 ```
