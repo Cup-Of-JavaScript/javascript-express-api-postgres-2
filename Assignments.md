@@ -170,13 +170,67 @@ Example output for http://localhost:5150/ex1/books/1:
 }
 ```
 
-# Ex. 6
+# Ex. 6 Get People for Bookstore
+Create the following API endpoint:
+
+```
+Method: GET
+URL:  http://localhost:5150/ex6/bookstores/{id}/people
+BODY: None
+```
+
+This endpoint returns all the people for the specified bookstore.  This endpoint must join the `bookstore`, `person` and `person_type` tables.
+
+Example output for http://localhost:5150/ex6/bookstores/1/people:
+
+```
+[
+  {
+    "person_id": 1,
+    "first_name": "Alice",
+    "last_name": "Jones",
+    "person_type": "Manager"
+  },
+  {
+    "person_id": 4,
+    "first_name": "Dave",
+    "last_name": "Campbell",
+    "person_type": "Cashier"
+  },
+  {
+    "person_id": 5,
+    "first_name": "Earl",
+    "last_name": "Jendkins",
+    "person_type": "Cashier"
+  }
+]
+```
+
+# Ex. 7 Add Person
+
+Create the following API endpoint:
+
+```
+Method: POST
+URL:  http://localhost:5150/ex1/persons
+BODY: 
+{
+    bookStoreId: <number>
+    personTypeId: <number>,
+    firstName: <string>,
+    lastName: <string>,
+    dob: <string>
+}
+```
+
+This endpoint adds a new person to the `person` table and returns the newly inserted person:
+
+Example output:
+
+```
 
 
-
-
-
-# Ex. 7
+```
 
 # Ex. 8
 

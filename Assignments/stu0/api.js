@@ -68,6 +68,14 @@ app.get('/ex5/books/:id', cors(corsOptions), async (req, res) => {
     res.send(persons);
 });
 
+//
+// GET /ex5/bookstores/:id/people
+//
+
+app.get('/ex6/bookstores/:id/people', cors(corsOptions), async (req, res) => { 
+    let persons = await dataAccess.getPeopleAtBookstore(req.params['id'])
+    res.send(persons);
+});
 
 app.listen(PORT, () => {
     console.log(`Local Web API Express Server Running on Port: ${PORT}`);

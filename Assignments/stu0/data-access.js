@@ -15,6 +15,18 @@ const SELECT_PERSONS_FOR_TYPE = `
         person_type = $1`;
 const SELECT_BOOKS = "select * from book";
 const SELECT_BOOK = "select * from book where book_id = $1";
+const SELECT_PERSON_AT_BOOKSTORE = `
+    select 
+        p.person_id, 
+        p.first_name,
+        p.last_name, 
+        pt.person_type
+    from person p
+        join book_store bs on p.book_store_id = bs.book_store_id
+        join person_type pt on p.person_type_id = pt.person_type_id
+    where p.book_store_id = $1`
+
+const INSERT_PERSON = "insert into person first_name, last_name, dob values ($1, $2, $3)";
 
 const pool = new Pool({
   user: "postgres",
@@ -82,3 +94,26 @@ exports.getBook = async (userId) => {
     }
     return retval;
 }
+
+exports.getPeopleAtBookstore = async (bookStoreId) => {
+    let retval = null;
+    try {
+        let r = await pool.query(SELECT_PERSON_AT_BOOKSTORE, [bookStoreId]);
+        retval = r.rows;
+    } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}
+
+exports.addPerson = async (person) => {
+    let retval = null;
+    try {
+        let r = await pool.query(SELECT_BOOK, [userId]);
+        retval = r.rows;
+    } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}
+
