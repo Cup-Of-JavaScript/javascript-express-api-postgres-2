@@ -11,6 +11,10 @@ GET http://localhost:5150/ex2/persons/1?type=person
 
 Be sure to run the `SQL\create-bookstore-db.sql` script to create the tables and data that this API will consume.
 
+Use ThunderClient to test your endpoints.
+
+![](./docs/thunder-client.png)
+
 # Ex. 1 Get All People
 Create the following API endpoint:
 
