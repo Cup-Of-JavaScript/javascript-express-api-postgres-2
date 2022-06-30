@@ -28,7 +28,6 @@ app.use(cors());
 
 app.get('/persons/:id', cors(corsOptions), async (req, res) => { 
     let person = await dataAccess.getPerson(req.params['id'])
-    // let body = req.body;
     res.send(person);
 });
 
