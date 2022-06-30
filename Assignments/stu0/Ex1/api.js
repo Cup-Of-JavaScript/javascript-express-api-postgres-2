@@ -7,30 +7,10 @@
 
 const cors = require('cors');
 const express = require('express');
-
+const { getPerson } = require('./data-access');
 
 const PORT = 5152;
 const app = express();
-const personArray = [];
-
-// Populate with three people...
-personArray.push( {
-    id: 1,
-    name: "Alice",
-    age: 11
-})
-
-personArray.push( {
-    id: 2,
-    name: "Bob",
-    age: 22
-})
-
-personArray.push( {
-    id: 3,
-    name: "Charlie",
-    age: 33
-})
 
 var corsOptions = {
     origin: ['http://localhost:3001', 'http://localhost:3000'],
@@ -43,22 +23,14 @@ app.use(express.urlencoded());
 app.use(cors());
 
 //
-// GET /persons
-//
-
-app.get('/persons', cors(corsOptions), (req, res) => { 
-    res.send(personArray);
-});
-
-
-//
 // GET /persons/:id
 //
 
-app.get('/persons/:id', cors(corsOptions), (req, res) => { 
-    let p = personArray.filter(p => p.id === parseInt(req.params['id']))
-    console.log(personArray)
-    res.send(p[0]);
+app.get('/persons/:id', cors(corsOptions), async (req, res) => { 
+    let r = await getPerson(req.params['id'])
+    // let p = personArray.filter(p => p.id === parseInt(req.params['id']))
+    // console.log(personArray)
+    res.send(r);
 });
 
 //
@@ -90,6 +62,6 @@ app.delete('/persons/:id', cors(corsOptions), (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Express Server is running on port: ${PORT}`);
+    console.log(`Local Web API Express Server Running on Port: ${PORT}`);
 });
 
