@@ -88,6 +88,17 @@ app.post('/ex7/persons', cors(corsOptions), async (req, res) => {
     res.send(person);
 });
 
+//
+// POST /ex8/bookstores
+//
+
+app.post('/ex8/bookstores', cors(corsOptions), async (req, res) => { 
+    let book = req.body;
+    let bookId = await dataAccess.addBookstore(book.bookstoreName)
+    book.bookId = bookId
+    res.send(book);
+});
+
 app.listen(PORT, () => {
     console.log(`Local Web API Express Server Running on Port: ${PORT}`);
 });

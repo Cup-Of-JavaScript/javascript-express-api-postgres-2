@@ -207,7 +207,6 @@ Example output for http://localhost:5150/ex6/bookstores/1/people:
 ```
 
 # Ex. 7 Add Person
-
 Create the following API endpoint:
 
 ```
@@ -239,12 +238,32 @@ Example output:
 
 ```
 
-# Ex. 8
+# Ex. 8 Add Bookstore
+Create the following API endpoint:
+
+```
+Method: POST
+URL:  http://localhost:5152/ex8/bookstores
+BODY: 
+{
+    "bookstoreName": <string>
+}
+```
 
 
+This endpoint adds a new bookstore to the `bookstore` table.  It returns the newly created of the bookstore in the response.
 
+Example output:
+```
+{
+  "bookstoreName": "Book Worms",
+  "bookId": 4
+}
+```
 
 
 # Ex. 9
+
+
 
 # Ex. 10

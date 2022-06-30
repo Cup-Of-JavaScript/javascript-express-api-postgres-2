@@ -27,6 +27,8 @@ const SELECT_PERSON_AT_BOOKSTORE = `
     where p.book_store_id = $1`
 
 const INSERT_PERSON = "insert into person (person_type_id, book_store_id, first_name, last_name, dob) values ($1, $2, $3, $4, $5) returning person_id";
+const INSERT_BOOKSTORE = "insert into book_store (book_store_name) values ($1) returning book_store_id";
+
 
 const pool = new Pool({
   user: "postgres",
@@ -117,3 +119,13 @@ exports.addPerson = async (person) => {
     return retval;
 }
 
+exports.addBookstore = async (bookname) => {
+    let retval = null;
+    try {
+        let r = await pool.query(INSERT_BOOKSTORE, [bookname]);
+        retval = r.rows[0].book_store_id;
+    } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}
