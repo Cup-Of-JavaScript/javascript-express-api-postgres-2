@@ -9,7 +9,7 @@ GET http://localhost:5150/ex2/persons/1?type=person
 ...
 ```
 
-# Ex. 1
+# Ex. 1 Get All People
 Create the following API endpoint:
 
 ```
@@ -43,7 +43,7 @@ Example output:
   ...
 ```
 
-# Ex. 2
+# Ex. 2 Get Person With ID
 Create the following API endpoint:
 
 ```
@@ -66,7 +66,7 @@ Example Output for  http://localhost:5150/ex1/persons/1:
 }
 ```
 
-# Ex. 3
+# Ex. 3 Get All People for Type
 Create the following API endpoint:
 
 ```
