@@ -11,7 +11,7 @@ const SELECT_PERSON = "select * from person where person_id = $1";
 const pool = new Pool({
   user: "postgres",
   password: "Ihgdp51505150!",
-  database: "express",
+  database: "stu0",
   host: "localhost",
   port: 5432,
 });
