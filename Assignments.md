@@ -54,7 +54,7 @@ Create the following API endpoint:
 
 ```
 Method: GET
-URL:  http://localhost:5150/ex1/persons/{userId}
+URL:  http://localhost:5150/ex1/persons/{id}
 BODY: None
 ```
 
@@ -116,12 +116,59 @@ Example Output for  http://localhost:5150/ex1/persons?personType=Manager:
 ]
 ```
 
-# Ex. 4
+# Ex. 4 Get Books
+Create the following API endpoint:
 
+```
+Method: GET
+URL:  http://localhost:5150/ex1/books/
+BODY: None
+```
 
+This endpoint returns ALL the books from the `book` table:
 
+Example output:
 
-# Ex. 5
+```
+[
+  {
+    "book_id": 1,
+    "title": "Relentless",
+    "isbn": "111-1-11-11111-1"
+  },
+  {
+    "book_id": 2,
+    "title": "Alice in Wonderland",
+    "isbn": "222-2-22-22222-2"
+  },
+  {
+    "book_id": 3,
+    "title": "Do Androids Dream of Electric Sleep",
+    "isbn": "333-3-33-33333-3"
+  },
+  ...
+```
+
+# Ex. 5  Get Book for ID
+Create the following API endpoint:
+
+```
+Method: GET
+URL:  http://localhost:5150/ex1/books/{id}
+BODY: None
+```
+
+This endpoint returns all the information for a specific book.
+
+Example output:
+
+```
+{
+"book_id": 1,
+"title": "Relentless",
+"isbn": "111-1-11-11111-1"
+}
+```
 
 # Ex. 6
 
