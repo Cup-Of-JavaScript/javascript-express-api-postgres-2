@@ -23,13 +23,33 @@ app.use(express.urlencoded());
 app.use(cors());
 
 //
-// GET /ex1/persons/:id
+// GET /ex1/persons/
 //
 
-app.get('/ex1/persons/:id', cors(corsOptions), async (req, res) => { 
-    let person = await dataAccess.getPerson(req.params['id'])
+app.get('/ex1/persons/', cors(corsOptions), async (req, res) => { 
+    let person = await dataAccess.getPersons()
     res.send(person);
 });
+
+//
+// GET /ex2/persons/:id
+//
+
+app.get('/ex2/persons/:id/', cors(corsOptions), async (req, res) => { 
+    let persons = await dataAccess.getPerson(req.params['id'])
+    res.send(persons);
+});
+
+//
+// GET /ex3/persons?personType={Manager|Cashier|Stock%20Person}
+//
+
+app.get('/ex3/persons', cors(corsOptions), async (req, res) => { 
+    let persons = await dataAccess.getPersonsForType(req.query['personType'])
+    res.send(persons);
+});
+
+
 
 
 

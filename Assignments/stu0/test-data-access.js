@@ -1,10 +1,9 @@
-const { getPerson } = require('./data-access');
+const dataAccess = require('./data-access');
 
 const main = async () => {
-    let r = await getPerson(1)
+    let r = await dataAccess.getPersonsForType('Manager')
     console.log(r)
     process.exit()
 }
 
 main()
-
