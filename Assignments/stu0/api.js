@@ -58,7 +58,6 @@ app.get('/ex4/books', cors(corsOptions), async (req, res) => {
     res.send(persons);
 });
 
-
 //
 // GET /ex5/books/:id
 //
@@ -78,7 +77,7 @@ app.get('/ex6/bookstores/:id/people', cors(corsOptions), async (req, res) => {
 });
 
 //
-// POST /ex7/bookstores/:id/people
+// POST /ex7/persons
 //
 
 app.post('/ex7/persons', cors(corsOptions), async (req, res) => { 
@@ -120,6 +119,5 @@ app.delete('/ex10/persons/:id', cors(corsOptions), async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Local Web API Express Server Running on Port: ${PORT}`);
+    console.log(`Bookstore API is running on Port: ${PORT}`);
 });
-
