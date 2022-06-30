@@ -30,12 +30,3 @@ exports.getPerson = async (personId) => {
     }
     return retval;
 }
-
-//
-// main
-//
-
-const main = async () => {
-    let p = await getPerson(1);
-    console.log(p)
-}

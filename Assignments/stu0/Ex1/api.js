@@ -1,8 +1,8 @@
 // 
 // File: api.js
 // Auth: Martin Burolla
-// Date: 6/22/2022
-// Desc: Simple API
+// Date: 6/30/2022
+// Desc: Simple API using CommonJS modules.
 //
 
 const cors = require('cors');
@@ -27,10 +27,8 @@ app.use(cors());
 //
 
 app.get('/persons/:id', cors(corsOptions), async (req, res) => { 
-    let r = await getPerson(req.params['id'])
-    // let p = personArray.filter(p => p.id === parseInt(req.params['id']))
-    // console.log(personArray)
-    res.send(r);
+    let person = await getPerson(req.params['id'])
+    res.send(person);
 });
 
 //
