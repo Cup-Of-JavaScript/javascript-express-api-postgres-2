@@ -234,12 +234,14 @@ Example output:
   "firstName": "Joe",
   "lastName": "Dirt",
   "dob": "8/29/1970",
-  "personId": 15
+  "personId": 15   <====== id of inserted row
 }
 
 ```
 
 # Ex. 8
+
+
 
 
 
