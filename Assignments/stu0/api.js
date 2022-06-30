@@ -99,6 +99,16 @@ app.post('/ex8/bookstores', cors(corsOptions), async (req, res) => {
     res.send(book);
 });
 
+//
+// PUT /ex9/persons
+//
+
+app.put('/ex9/persons', cors(corsOptions), async (req, res) => { 
+    let person = req.body;
+    let updatedPerson = await dataAccess.updatePerson(person.personId, person.firstName, person.lastName)
+    res.send(updatedPerson);
+});
+
 app.listen(PORT, () => {
     console.log(`Local Web API Express Server Running on Port: ${PORT}`);
 });

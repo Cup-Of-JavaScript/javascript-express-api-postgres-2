@@ -261,9 +261,33 @@ Example output:
 }
 ```
 
+# Ex. 9  Update Person Name
+Create the following API endpoint:
 
-# Ex. 9
+```
+Method: PUT
+URL:  http://localhost:5152/ex9/persons
+BODY: 
+{
+    "personId": <nunmber>,
+    "firstName": <string>,
+    "lastName": <string>
+}
+```
 
+This endpoint updates a person in the `person` table and returns the newly updated person.
 
+Example output:
+```
+{
+  "person_id": 1,
+  "person_type_id": 1,
+  "book_store_id": 1,
+  "first_name": "Ms. Alice",
+  "last_name": "Change",
+  "dob": "1970-08-29T04:00:00.000Z"
+}
+```
 
 # Ex. 10
+

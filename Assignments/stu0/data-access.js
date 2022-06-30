@@ -28,6 +28,7 @@ const SELECT_PERSON_AT_BOOKSTORE = `
 
 const INSERT_PERSON = "insert into person (person_type_id, book_store_id, first_name, last_name, dob) values ($1, $2, $3, $4, $5) returning person_id";
 const INSERT_BOOKSTORE = "insert into book_store (book_store_name) values ($1) returning book_store_id";
+const UPDATE_PERSON = "update person set first_name = $1, last_name = $2 where person_id = $3"
 
 
 const pool = new Pool({
@@ -124,6 +125,17 @@ exports.addBookstore = async (bookname) => {
     try {
         let r = await pool.query(INSERT_BOOKSTORE, [bookname]);
         retval = r.rows[0].book_store_id;
+    } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}
+
+exports.updatePerson = async (personId, firstName, lastName) => {
+    let retval = null;
+    try {
+        await pool.query(UPDATE_PERSON, [firstName, lastName, personId]);
+        retval = await this.getPerson(personId)
     } catch (err) {
         console.error(err);
     }
