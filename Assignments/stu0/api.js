@@ -119,5 +119,5 @@ app.delete('/ex10/persons/:id', cors(corsOptions), async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Bookstore API is running on Port: ${PORT}`);
+    console.log(`Bookstore API is running on port: ${PORT}`);
 });
