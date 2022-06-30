@@ -26,7 +26,7 @@ const SELECT_PERSON_AT_BOOKSTORE = `
         join person_type pt on p.person_type_id = pt.person_type_id
     where p.book_store_id = $1`
 
-const INSERT_PERSON = "insert into person first_name, last_name, dob values ($1, $2, $3)";
+const INSERT_PERSON = "insert into person (person_type_id, book_store_id, first_name, last_name, dob) values ($1, $2, $3, $4, $5) returning person_id";
 
 const pool = new Pool({
   user: "postgres",
@@ -109,8 +109,8 @@ exports.getPeopleAtBookstore = async (bookStoreId) => {
 exports.addPerson = async (person) => {
     let retval = null;
     try {
-        let r = await pool.query(SELECT_BOOK, [userId]);
-        retval = r.rows;
+        let r = await pool.query(INSERT_PERSON, [person.personTypeId, person.bookstoreId, person.firstName, person.lastName, person.dob]);
+        retval = r.rows[0].person_id;
     } catch (err) {
         console.error(err);
     }

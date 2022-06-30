@@ -69,12 +69,23 @@ app.get('/ex5/books/:id', cors(corsOptions), async (req, res) => {
 });
 
 //
-// GET /ex5/bookstores/:id/people
+// GET /ex6/bookstores/:id/people
 //
 
 app.get('/ex6/bookstores/:id/people', cors(corsOptions), async (req, res) => { 
     let persons = await dataAccess.getPeopleAtBookstore(req.params['id'])
     res.send(persons);
+});
+
+//
+// POST /ex7/bookstores/:id/people
+//
+
+app.post('/ex7/persons', cors(corsOptions), async (req, res) => { 
+    let person = req.body;
+    let personId = await dataAccess.addPerson(person)
+    person.personId = personId
+    res.send(person);
 });
 
 app.listen(PORT, () => {

@@ -1,7 +1,15 @@
 const dataAccess = require('./data-access');
 
 const main = async () => {
-    let r = await dataAccess.getPersonsForType('Manager')
+    let person  = {
+        personTypeId: 1,
+        bookStoreId: 1,
+        firstName: "joe",
+        lastName: "smith",
+        dob: "8/29/1970"
+    }
+
+    let r = await dataAccess.addPerson(person);
     console.log(r)
     process.exit()
 }

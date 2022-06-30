@@ -223,16 +223,25 @@ BODY:
 }
 ```
 
-This endpoint adds a new person to the `person` table and returns the newly inserted person:
+This endpoint adds a new person to the `person` table.  The endpoint returns the person that was added to the database and also includes the id of the newly inserted row (`personId`).
 
 Example output:
 
 ```
-
+{
+  "bookstoreId": 1,
+  "personTypeId": 1,
+  "firstName": "Joe",
+  "lastName": "Dirt",
+  "dob": "8/29/1970",
+  "personId": 15
+}
 
 ```
 
 # Ex. 8
+
+
 
 # Ex. 9
 
