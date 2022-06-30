@@ -23,13 +23,16 @@ app.use(express.urlencoded());
 app.use(cors());
 
 //
-// GET /persons/:id
+// GET /ex1/persons/:id
 //
 
 app.get('/ex1/persons/:id', cors(corsOptions), async (req, res) => { 
     let person = await dataAccess.getPerson(req.params['id'])
     res.send(person);
 });
+
+
+
 
 app.listen(PORT, () => {
     console.log(`Local Web API Express Server Running on Port: ${PORT}`);
