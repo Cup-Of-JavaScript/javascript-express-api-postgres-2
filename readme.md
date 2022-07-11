@@ -18,3 +18,4 @@ Assignments are located [here](./Assignments.md).
 - [Oktane17: Designing Beautiful ReST + JSON APIs (48m)](https://youtu.be/MiOSzpfP1Ww)
 - [ReST Tutorial - How to Design a Good ReSTful API (8m)](https://youtu.be/sMKsmZbpyjE)
 - [Roy Fielding - The God Father of the ReST API (11m)](https://youtu.be/w5j2KwzzB-0)
+- [HTTP ReST API Crash Course w/ Express (40m)](https://youtu.be/iYM2zFP3Zn0)
