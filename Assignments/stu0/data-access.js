@@ -4,7 +4,7 @@
 // Desc: CommonJS module that contains our data access code.
 //
 
-const { Pool } = require("pg");
+const { pool } = require("../../postgres-pool");
 
 const SELECT_PERSONS = "select * from person";
 const SELECT_PERSON = "select * from person where person_id = $1";
@@ -30,14 +30,6 @@ const INSERT_PERSON = "insert into person (person_type_id, book_store_id, first_
 const INSERT_BOOKSTORE = "insert into book_store (book_store_name) values ($1) returning book_store_id";
 const UPDATE_PERSON = "update person set first_name = $1, last_name = $2 where person_id = $3"
 const DELETE_PERSON = "delete from person where person_id = $1"
-
-const pool = new Pool({
-  user: "postgres",
-  password: "Ihgdp51505150!",
-  database: "stu0",
-  host: "localhost",
-  port: 5432,
-});
 
 //
 // GET Person

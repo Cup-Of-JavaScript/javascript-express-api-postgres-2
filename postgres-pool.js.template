@@ -1,0 +1,9 @@
+const { Pool } = require("pg");
+
+exports.pool = new Pool({
+    user: "postgres",
+    password: "xxx",  // <== Replace with your password.
+    database: "stu0",
+    host: "localhost",
+    port: 5432,
+  });
