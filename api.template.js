@@ -31,6 +31,7 @@ app.get('/ex1/persons/:id', cors(corsOptions), async (req, res) => {
     // let id = req.params['id'];                 // Read path params from URL.
     // let queryParam1 = req.query['personType']  // Read query params from URL.
     // let body = req.body;                       // Read request body.
+    // res.status(404);                           // Change status code.
     // res.send(<YOUR OBJECT HERE>);
 });
 
