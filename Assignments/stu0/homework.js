@@ -6,7 +6,6 @@
 
 const cors = require('cors');
 const express = require('express');
-const dataAccess = require('./data-access');
 
 const PORT = 7777;
 const app = express();
@@ -22,5 +21,10 @@ app.use(express.urlencoded());
 app.use(cors());
 
 app.get('/hello-world', cors(corsOptions), async (req, res) => { 
-    res.send('Hello World.')
+    res.send('Hello World')
+});
+
+
+app.listen(PORT, () => {
+    console.log(`Bookstore API is running on port: ${PORT}`);
 });
