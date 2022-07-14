@@ -85,7 +85,7 @@ app.get('/ex6/bookstores/:id/people', cors(corsOptions), async (req, res) => {
 
 app.post('/ex7/persons', cors(corsOptions), async (req, res) => { 
     let person = req.body;
-    let personId = await dataAccess.addPerson(person)
+    let personId = await dataAccess.addPerson(req.body)
     person.personId = personId
     res.send(person);
 });
