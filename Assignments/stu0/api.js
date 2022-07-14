@@ -7,12 +7,12 @@
 
 const cors = require('cors');
 const express = require('express');
-const dataAccess = require('./data-access');
+const dataAccess = require('./data-access'); 
 
 const PORT = 5152;
 const app = express();
 
-var corsOptions = {
+let corsOptions = {
     origin: ['http://localhost:3001', 'http://localhost:3000'],
     optionsSuccessStatus: 200
 }
