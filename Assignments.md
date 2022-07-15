@@ -147,7 +147,6 @@ Output:
 ]
 ```
 
-
 # Ex. 5 Get Transactions for Date Range
 Create the following API endpoint:
 
@@ -200,7 +199,6 @@ Output:
   }
 ]
 ```
-
 
 # Ex. 6 Get Account Balance
 This one is a doozie.
@@ -300,5 +298,25 @@ http://localhost:5150/ex7/accounts/1/transactions?startDate=1/1/2022&endDate=3/1
   }
 ]
 
+```
+
+# Ex 8. Post Transaction
+Create the following API endpoint:
+
+```
+Method: GET
+URL:  http://localhost:5150/ex8/accounts/{accountId}/transactions
+BODY: 
+  {
+    "transactionTypeId": {1 or 2},
+    "dollarAmount": <number>,
+    "transactionDate": <string>
+  }
+```
+
+This endpoint posts a new transaction to the transactions table and returns the id of the newly inserted row.
+
+```
+{ transaction_id: 22 }
 ```
 

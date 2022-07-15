@@ -52,6 +52,14 @@ const SELECT_ACCOUNT_TRANSACTIONS_FOR_DATE_RANGE = `
         transaction_date
     `
 
+const INSERT_TRANSACTION = `
+    insert into 
+        transaction (account_id, transaction_type_id, dollar_amount, transaction_date)
+    values 
+        ($1, $2, $3, $4)
+    returning transaction_id;
+    `
+
 module.exports.getAccoutTypes = async () => {
     let retval = null;
     try {
@@ -135,6 +143,17 @@ module.exports.getAccountTransactionsForDateRange = async (accountId, startDate,
     try {
         const r = await pool.query(SELECT_ACCOUNT_TRANSACTIONS_FOR_DATE_RANGE, [accountId, startDate, endDate])
         retval = r.rows;
+    } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}
+
+module.exports.insertTransaction = async (accountId, transactionTypeId, dollarAmount, transDate) => {
+    let retval = null;
+    try {
+        const r = await pool.query(INSERT_TRANSACTION, [accountId, transactionTypeId, dollarAmount, transDate])
+        retval = r.rows[0];
     } catch (err) {
         console.error(err);
     }

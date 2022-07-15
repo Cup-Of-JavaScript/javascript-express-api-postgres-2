@@ -91,6 +91,21 @@ app.get('/ex7/accounts/:accountId/transactions', cors(corsOptions), async (req, 
     res.send(transactions);
 });
 
+//
+// POST ex8/accounts/{accountId}/transactions
+//
+
+app.post('/ex8/accounts/:accountId/transactions', cors(corsOptions), async (req, res) => { 
+    const accountId = req.params['accountId']
+    const transaction = req.body
+    const transactions = await dataAccess.insertTransaction(
+        accountId, 
+        transaction.transactionTypeId, 
+        transaction.dollarAmount, 
+        transaction.transactionDate)
+    res.send(transactions);
+});
+
 
 app.listen(PORT, () => {
     console.log(`Bookstore API is running on port: ${PORT}`);
