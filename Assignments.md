@@ -103,16 +103,16 @@ Output:
 ```
 [
   {
-    first_name: 'Bob',
-    last_name: 'Marley',
-    dob: 1975-01-29T05:00:00.000Z,
-    bank_user_id: 2
+    "first_name": "Bob",
+    "last_name": "Marley",
+    "dob": "1975-01-29T05:00:00.000Z",
+    "bank_user_id": 2
   },
   {
-    first_name: 'Charlies',
-    last_name: 'Daniels',
-    dob: 1973-08-29T04:00:00.000Z,
-    bank_user_id: 3
+    "first_name": "Charlies",
+    "last_name": "Daniels",
+    "dob": "1973-08-29T04:00:00.000Z",
+    "bank_user_id": 3
   }
 ]
 ```
@@ -248,7 +248,10 @@ This endpoint returns the account balance and the name of the account for the ac
 Output:
 `http://localhost:5150/ex6/accounts/1/balance`
 ```
-{ balance: '$29.00', account: 'checking' }
+{
+  "balance": "$29.00",
+  "account": "checking"
+}
 ```
 
 The currency formatter has been included in this project:
@@ -273,28 +276,28 @@ http://localhost:5150/ex7/accounts/1/transactions?startDate=1/1/2022&endDate=3/1
 ```
 [
   {
-    transaction_id: 1,
-    dollar_amount: '10.00',
-    transaction_date: 2022-01-01T05:00:00.000Z,
-    the_type: 'deposit'
+    "transaction_id": 1,
+    "dollar_amount": "10.00",
+    "transaction_date": "2022-01-01T05:00:00.000Z",
+    "the_type": "deposit"
   },
   {
-    transaction_id: 2,
-    dollar_amount: '10.00',
-    transaction_date: 2022-01-02T05:00:00.000Z,
-    the_type: 'deposit'
+    "transaction_id": 2,
+    "dollar_amount": "10.00",
+    "transaction_date": "2022-01-02T05:00:00.000Z",
+    "the_type": "deposit"
   },
   {
-    transaction_id: 3,
-    dollar_amount: '10.00',
-    transaction_date: 2022-01-03T05:00:00.000Z,
-    the_type: 'deposit'
+    "transaction_id": 3,
+    "dollar_amount": "10.00",
+    "transaction_date": "2022-01-03T05:00:00.000Z",
+    "the_type": "deposit"
   },
   {
-    transaction_id: 4,
-    dollar_amount: '1.00',
-    transaction_date: 2022-01-04T05:00:00.000Z,
-    the_type: 'withdraw'
+    "transaction_id": 4,
+    "dollar_amount": "1.00",
+    "transaction_date": "2022-01-04T05:00:00.000Z",
+    "the_type": "withdraw"
   }
 ]
 

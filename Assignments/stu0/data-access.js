@@ -40,7 +40,6 @@ const SELECT_SUM_WITHDRAWLS_FOR_ACCOUNT = `
         account_id = $1 and transaction_type_id = 2
     group by 
         account_name`
-
 const SELECT_ACCOUNT_TRANSACTIONS_FOR_DATE_RANGE = `
     select 
         transaction_id, dollar_amount, transaction_date, the_type
@@ -51,7 +50,6 @@ const SELECT_ACCOUNT_TRANSACTIONS_FOR_DATE_RANGE = `
     order by 
         transaction_date
     `
-
 const INSERT_TRANSACTION = `
     insert into 
         transaction (account_id, transaction_type_id, dollar_amount, transaction_date)
@@ -159,4 +157,3 @@ module.exports.insertTransaction = async (accountId, transactionTypeId, dollarAm
     }
     return retval;
 }
-
