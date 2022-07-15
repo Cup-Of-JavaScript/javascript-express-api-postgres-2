@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS public.transaction
     transaction_id serial NOT NULL,
     account_id integer,
     transaction_type_id integer,
-    dollar_amount money,
+    dollar_amount numeric,
     transaction_date date,
     PRIMARY KEY (transaction_id)
 );

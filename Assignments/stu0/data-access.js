@@ -4,6 +4,8 @@
 // Desc: CommonJS module that contains our data access code.
 //
 
+"use strict";
+
 const { pool } = require("../../postgres-pool");
 
 const SELECT_ACCOUNT_TYPES = "select * from account_type;";
@@ -18,8 +20,10 @@ const SELECT_ACCOUNTS_FOR_USER = `
         join account_type at on a.account_type_id = at.account_type_id
     where 
         bu.bank_user_id = $1`
-const SELECT_TRANSACTIONS_FOR_DATE_RANGE = `select * from transaction where transaction_date between $1 and $2;`
+const SELECT_TRANSACTIONS_FOR_DATE_RANGE = `select * from transaction where transaction_date between $1 and $2 order by transaction_date;`
     
+const SELECT_SUM_DEPOSITS_FOR_ACCOUNT = `select sum(dollar_amount) as total_deposit from view_transactions where account_id = $1 and transaction_type_id = 1`
+const SELECT_SUM_WITHDRAWLS_FOR_ACCOUNT = `select sum(dollar_amount) as total_withdrawl from view_transactions where account_id = $1 and transaction_type_id = 2`
 
 module.exports.getAccoutTypes = async () => {
     let retval = null;
@@ -56,8 +60,9 @@ module.exports.getUsersDobFilter = async (filterYear) => {
 }
 
 module.exports.getAccountsForUser = async (userId) => {
+    let retval = null;
     try {
-        let r = await pool.query(SELECT_ACCOUNTS_FOR_USER, [userId]);
+        let r = await pool.query(SELECT_ACCOUNTS_FOR_USER, [userId])
         retval = r.rows;
     } catch (err) {
         console.error(err);
@@ -66,6 +71,7 @@ module.exports.getAccountsForUser = async (userId) => {
 }
 
 module.exports.getTransactionsForDateRange = async (startDate, endDate) => {
+    let retval = null;
     try {
         let r = await pool.query(SELECT_TRANSACTIONS_FOR_DATE_RANGE, [startDate, endDate]);
         retval = r.rows;
@@ -74,3 +80,21 @@ module.exports.getTransactionsForDateRange = async (startDate, endDate) => {
     }
     return retval;
 }
+
+module.exports.getAccountBalanceForAccountId = async (accountId) => {
+    let retval = null;
+    try {
+        await pool.query("BEGIN")
+        let depositResult = await pool.query(SELECT_SUM_DEPOSITS_FOR_ACCOUNT, [accountId])
+        let sumDeposit = depositResult.rows[0].total_deposit
+        let withDrawResult = await pool.query(SELECT_SUM_WITHDRAWLS_FOR_ACCOUNT, [accountId])
+        let sumWithdrawl = withDrawResult.rows[0].total_withdrawl
+        retval = sumDeposit - sumWithdrawl
+        await pool.query("COMMIT")
+    } catch (err) {
+        await pool.query("ROLLBACK")
+        console.error(err);
+    }
+    return retval;
+}
+
