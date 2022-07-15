@@ -64,12 +64,20 @@ app.get('/ex4/users/:id/accounts', cors(corsOptions), async (req, res) => {
 //
 
 app.get('/ex5/transactions', cors(corsOptions), async (req, res) => { 
-    let startDate = req.query['startDate']
     let endDate = req.query['endDate']
+    let startDate = req.query['startDate']
     const transactions = await dataAccess.getTransactionsForDateRange(startDate, endDate)
     res.send(transactions);
 });
 
+//
+// GET /ex6/accounts/:accountId/balance
+//
+
+app.get('/ex6/accounts/:accountId/balance', cors(corsOptions), async (req, res) => { 
+    const balance = await dataAccess.getAccountBalanceForAccountId(req.params['accountId'])
+    res.send(balance);
+});
 
 
 

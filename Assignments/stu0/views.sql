@@ -24,8 +24,10 @@ create view view_transactions as
         bu.last_name,
         bu.dob,
         t.transaction_date,
-        tt.the_type
+        tt.the_type,
+        at.account_name
     from transaction t
         join transaction_type tt on t.transaction_type_id = tt.transaction_type_id
         join account a on a.account_id = t.account_id
         join bank_user bu on bu.bank_user_id = a.bank_user_id
+        join account_type at on at.account_type_id = a.account_type_id

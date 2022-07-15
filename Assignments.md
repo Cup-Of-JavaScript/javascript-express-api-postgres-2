@@ -203,12 +203,15 @@ Output:
 
 
 # Ex. 6 Get Account Balance
+This one is a doozie.
+
 Database views provide an abstraction over our data.  Views help us by combining many tables into one virtual table and allow us to see related data easier.  Views essentially flatten (denormalize) our data making it easy for us to understand. Create a view called `view_transactions` that joins the following tables:
 
 - transaction
 - transaction_type
 - account
 - bank_user
+- account_type
 
 ```
 create view view_transactions as
@@ -222,11 +225,13 @@ create view view_transactions as
         bu.last_name,
         bu.dob,
         t.transaction_date,
-        tt.the_type
+        tt.the_type,
+        at.account_name
     from transaction t
-        join transaction_type TODO...
+        join transaction_type tt TODO...
         join account TODO...
         join bank_user TODO...
+        join account_type TODO...
 
 ```
 
@@ -234,26 +239,27 @@ Once the view has been created, we can query the view as if it were a database t
 
 Create the following API endpoint:
 
-
 ```
 Method: GET
-URL:  http://localhost:5150/ex6/account/{accountId}/
+URL:  http://localhost:5150/ex6/account/{accountId}/balance
 BODY: None
 ```
 
-This endpoint returns ALL the transaction types from the `transaction_type` table:
+This endpoint returns the account balance and the name of the account for the account id specified in the Url:
 
 Output:
+`http://localhost:5150/ex6/accounts/1/balance`
+```
+{ balance: '$29.00', account: 'checking' }
+```
+
+The currency formatter has been included in this project:
 
 ```
-[
-  {
-    "transaction_type_id": 1,
-    "the_type": "deposit"
-  },
-  {
-    "transaction_type_id": 2,
-    "the_type": "withdraw"
-  }
-]
+let retval = currencyFormatter.format(balance, { code: 'USD' });
 ```
+
+# Ex 7. Get Transactions for Range
+
+
+
