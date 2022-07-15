@@ -304,7 +304,7 @@ http://localhost:5150/ex7/accounts/1/transactions?startDate=1/1/2022&endDate=3/1
 Create the following API endpoint:
 
 ```
-Method: GET
+Method: POST
 URL:  http://localhost:5150/ex8/accounts/{accountId}/transactions
 BODY: 
   {
