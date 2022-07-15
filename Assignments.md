@@ -4,7 +4,7 @@ We will build an Express that connects to a Postgres database. The web API will 
 
 ```
 GET http://localhost:5150/ex1/account-types/
-GET http://localhost:5150/ex2/account-types/
+GET http://localhost:5150/ex2/transaction-types/
 GET http://localhost:5150/ex3/account-types/
 ...
 ```
@@ -63,7 +63,7 @@ Create the following API endpoint:
 
 ```
 Method: GET
-URL:  http://localhost:5150/ex1/transaction-types/
+URL:  http://localhost:5150/ex2/transaction-types/
 BODY: None
 ```
 
