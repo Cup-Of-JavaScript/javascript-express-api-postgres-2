@@ -260,6 +260,45 @@ let retval = currencyFormatter.format(balance, { code: 'USD' });
 ```
 
 # Ex 7. Get Transactions for Range
+Use the view that was created in exercise 6 to create the following endpoint:
 
+```
+Method: GET
+URL:  http://localhost:5150/ex6/account/{accountId}/transactions?startDate={startDate}&endDate={endDate}
+BODY: None
+```
 
+This endpoint returns the transactions for that account id specified and for the date range specified in ascending order.
+
+Output:
+http://localhost:5150/ex7/accounts/1/transactions?startDate=1/1/2022&endDate=3/1/2022
+```
+[
+  {
+    transaction_id: 1,
+    dollar_amount: '10.00',
+    transaction_date: 2022-01-01T05:00:00.000Z,
+    the_type: 'deposit'
+  },
+  {
+    transaction_id: 2,
+    dollar_amount: '10.00',
+    transaction_date: 2022-01-02T05:00:00.000Z,
+    the_type: 'deposit'
+  },
+  {
+    transaction_id: 3,
+    dollar_amount: '10.00',
+    transaction_date: 2022-01-03T05:00:00.000Z,
+    the_type: 'deposit'
+  },
+  {
+    transaction_id: 4,
+    dollar_amount: '1.00',
+    transaction_date: 2022-01-04T05:00:00.000Z,
+    the_type: 'withdraw'
+  }
+]
+
+```
 

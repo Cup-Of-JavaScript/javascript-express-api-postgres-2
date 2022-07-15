@@ -41,6 +41,17 @@ const SELECT_SUM_WITHDRAWLS_FOR_ACCOUNT = `
     group by 
         account_name`
 
+const SELECT_ACCOUNT_TRANSACTIONS_FOR_DATE_RANGE = `
+    select 
+        transaction_id, dollar_amount, transaction_date, the_type
+    from 
+        view_transactions 
+    where 
+        account_id = $1 and transaction_date between $2 and $3
+    order by 
+        transaction_date
+    `
+
 module.exports.getAccoutTypes = async () => {
     let retval = null;
     try {
@@ -114,6 +125,17 @@ module.exports.getAccountBalanceForAccountId = async (accountId) => {
         await pool.query("COMMIT")
     } catch (err) {
         await pool.query("ROLLBACK")
+        console.error(err);
+    }
+    return retval;
+}
+
+module.exports.getAccountTransactionsForDateRange = async (accountId, startDate, endDate) => {
+    let retval = null;
+    try {
+        const r = await pool.query(SELECT_ACCOUNT_TRANSACTIONS_FOR_DATE_RANGE, [accountId, startDate, endDate])
+        retval = r.rows;
+    } catch (err) {
         console.error(err);
     }
     return retval;

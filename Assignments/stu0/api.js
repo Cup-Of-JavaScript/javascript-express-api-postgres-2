@@ -80,6 +80,17 @@ app.get('/ex6/accounts/:accountId/balance', cors(corsOptions), async (req, res) 
 });
 
 
+//
+// GET /ex7/accounts/:accountId/transactions?startDate={startDate}&endDate={endDate}
+//
+
+app.get('/ex7/accounts/:accountId/transactions', cors(corsOptions), async (req, res) => { 
+    let endDate = req.query['endDate']
+    let startDate = req.query['startDate']
+    let accountId = req.params['accountId']
+    const transactions = await dataAccess.getAccountTransactionsForDateRange(accountId, startDate, endDate)
+    res.send(transactions);
+});
 
 
 app.listen(PORT, () => {
