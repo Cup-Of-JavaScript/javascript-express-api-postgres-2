@@ -26,7 +26,7 @@ exports.pool = new Pool({
 
 ```
 
-Use [Thunder Client](https://www.thunderclient.com/) to test every API endpoint.
+Create a collection with [Thunder Client](https://www.thunderclient.com/) and test every API endpoint.
 
 ![](./docs/thunder-client.png)
 
