@@ -31,6 +31,15 @@ app.get('/ex1/account-types/', cors(corsOptions), async (req, res) => {
     res.send(accountTypes);
 });
 
+//
+// GET /ex2/account-types/
+//
+
+app.get('/ex1/transaction-types/', cors(corsOptions), async (req, res) => { 
+    const transactionTypes = await dataAccess.getTransactionTypes();
+    res.send(transactionTypes);
+});
+
 
 
 

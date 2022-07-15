@@ -9,7 +9,7 @@ GET http://localhost:5150/ex3/account-types/
 ...
 ```
 
-Run the `SQL\create-banking-db.sql` script in a local Postgres database and be sure to update `postgres-pool.js` to connect to the banking database.
+Run the `SQL\create-banking-db.sql` script in a local Postgres database and be sure to update/create `postgres-pool.js` to connect to this banking database.
 
 ```
 const { Pool } = require("pg");
@@ -17,7 +17,7 @@ const { Pool } = require("pg");
 exports.pool = new Pool({
     user: "postgres",
     password: "xxxxx", // <== Replace with your password.
-    database: "Banks", // <=== Check database name.
+    database: "Bankiung", // <=== Check database name.
     host: "localhost",
     port: 5432,
   });
@@ -57,3 +57,31 @@ Output:
   }
 ]
 ```
+
+# Ex. 2 Get Transaction Types
+Create the following API endpoint:
+
+```
+Method: GET
+URL:  http://localhost:5150/ex1/transaction-types/
+BODY: None
+```
+
+This endpoint returns ALL the transaction types from the `transaction_type` table:
+
+Output:
+
+```
+[
+  {
+    "transaction_type_id": 1,
+    "the_type": "deposit"
+  },
+  {
+    "transaction_type_id": 2,
+    "the_type": "withdraw"
+  }
+]
+```
+
+
