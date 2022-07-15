@@ -320,6 +320,7 @@ BODY:
 This endpoint posts a new transaction to the transactions table and returns the id of the newly inserted row.
 
 ```
-{ transaction_id: 22 }
+{
+  "transaction_id": 22
+}
 ```
-
