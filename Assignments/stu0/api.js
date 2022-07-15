@@ -27,9 +27,11 @@ app.use(cors());
 //
 
 app.get('/ex1/account-types/', cors(corsOptions), async (req, res) => { 
-    let persons = await dataAccess.getPersons()
-    res.send(persons);
+    const accountTypes = await dataAccess.getAccoutTypes();
+    res.send(accountTypes);
 });
+
+
 
 
 
