@@ -91,11 +91,15 @@ Create the following API endpoint:
 
 ```
 Method: GET
-URL:  http://localhost:5150/ex2/transaction-types/
+URL:  http://localhost:5150/ex3/users?dobFilterYear={year}
 BODY: None
 ```
 
+Where  `year` is a variable such as 1970.  This endpoint returns all the users that have been born after the year specified in the Url.
+
 Output:
+`http://localhost:5150/ex3/users?dobFilterYear=1972`
+
 ```
 [
   {
