@@ -85,10 +85,10 @@ module.exports.getAccountBalanceForAccountId = async (accountId) => {
     let retval = null;
     try {
         await pool.query("BEGIN")
-        let depositResult = await pool.query(SELECT_SUM_DEPOSITS_FOR_ACCOUNT, [accountId])
-        let sumDeposit = depositResult.rows[0].total_deposit
-        let withDrawResult = await pool.query(SELECT_SUM_WITHDRAWLS_FOR_ACCOUNT, [accountId])
-        let sumWithdrawl = withDrawResult.rows[0].total_withdrawl
+        const depositResult = await pool.query(SELECT_SUM_DEPOSITS_FOR_ACCOUNT, [accountId])
+        const sumDeposit = depositResult.rows[0].total_deposit
+        const withDrawResult = await pool.query(SELECT_SUM_WITHDRAWLS_FOR_ACCOUNT, [accountId])
+        const sumWithdrawl = withDrawResult.rows[0].total_withdrawl
         retval = sumDeposit - sumWithdrawl
         await pool.query("COMMIT")
     } catch (err) {
