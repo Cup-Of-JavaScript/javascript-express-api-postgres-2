@@ -22,24 +22,28 @@ const SELECT_ACCOUNTS_FOR_USER = `
     where 
         bu.bank_user_id = $1`
 const SELECT_TRANSACTIONS_FOR_DATE_RANGE = `select * from transaction where transaction_date between $1 and $2 order by transaction_date;`
+const SELECT_ACCOUNT_NAME_FOR_ACCOUNT_ID = `
+        select 
+            account_name
+        from account a
+            join account_type at on a.account_type_id = at.account_type_id
+        where 
+            account_id = $1`
 const SELECT_SUM_DEPOSITS_FOR_ACCOUNT = `
     select 
-        sum(dollar_amount) as total_deposit, account_name
+        sum(dollar_amount) as total_deposit
     from 
         view_transactions 
     where 
         account_id = $1 and transaction_type_id = 1 
-    group by 
-        account_name`
+    `
 const SELECT_SUM_WITHDRAWLS_FOR_ACCOUNT = `
     select 
-        sum(dollar_amount) as total_withdrawl, account_name
+        sum(dollar_amount) as total_withdrawl
     from 
         view_transactions 
     where 
-        account_id = $1 and transaction_type_id = 2
-    group by 
-        account_name`
+        account_id = $1 and transaction_type_id = 2`
 const SELECT_ACCOUNT_TRANSACTIONS_FOR_DATE_RANGE = `
     select 
         transaction_id, dollar_amount, transaction_date, the_type
@@ -121,13 +125,21 @@ module.exports.getAccountBalanceForAccountId = async (accountId) => {
     }
     try {
         await pool.query("BEGIN")
+        // Get account name.
+        const accountNameRow = await pool.query(SELECT_ACCOUNT_NAME_FOR_ACCOUNT_ID, [accountId])
+        retval.account = accountNameRow.rows[0].account_name;
+
+        // Determine total deposits.
         const depositResult = await pool.query(SELECT_SUM_DEPOSITS_FOR_ACCOUNT, [accountId])
-        const sumDeposit = depositResult.rows[0].total_deposit
+        const sumDeposit = (depositResult.rows[0]) ? depositResult.rows[0].total_deposit : 0
+
+        // Determine total withdrawls.
         const withDrawResult = await pool.query(SELECT_SUM_WITHDRAWLS_FOR_ACCOUNT, [accountId])
-        const sumWithdrawl = withDrawResult.rows[0].total_withdrawl
+        const sumWithdrawl = (withDrawResult.rows[0]) ? withDrawResult.rows[0].total_withdrawl : 0
         const balance = sumDeposit - sumWithdrawl
+        
+        // Format results.
         retval.balance = currencyFormatter.format(balance, { code: 'USD' });
-        retval.account = withDrawResult.rows[0].account_name
         await pool.query("COMMIT")
     } catch (err) {
         await pool.query("ROLLBACK")
