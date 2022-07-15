@@ -148,7 +148,7 @@ Output:
 ```
 
 
-# Ex. 5 Get Transactions Date Range
+# Ex. 5 Get Transactions for Date Range
 Create the following API endpoint:
 
 ```
