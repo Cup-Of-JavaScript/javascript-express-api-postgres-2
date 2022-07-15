@@ -32,7 +32,7 @@ module.exports.getAccountData = async (accountId) => {
         //
         // TODO... your queries here
         //
-        
+
         await pool.query("COMMIT")
     } catch (err) {
         await pool.query("ROLLBACK")
