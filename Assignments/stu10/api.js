@@ -8,7 +8,7 @@ const cors = require('cors');
 const express = require('express');
 const dataAccess = require('./data-access');
 
-const PORT = 5152;
+const PORT = 5150;
 const app = express();
 
 var corsOptions = {
@@ -22,64 +22,8 @@ app.use(express.urlencoded());
 app.use(cors());
 
 //
-// GET /ex1/persons/
+// API ENDPOINTS GO HERE...
 //
-
-// Ex. 1: TODO ...
-
-//
-// GET /ex2/persons/:id
-//
-
-// Ex. 2: TODO ...
-
-//
-// GET /ex3/persons?personType={Manager|Cashier|Stock%20Person}
-//
-
-// Ex. 3: TODO ...
-
-//
-// GET /ex4/books
-//
-
-// Ex. 4: TODO ...
-
-//
-// GET /ex5/books/:id
-//
-
-// Ex. 5: TODO ...
-
-//
-// GET /ex6/bookstores/:id/people
-//
-
-// Ex. 6: TODO ...
-
-//
-// POST /ex7/persons
-//
-
-// Ex. 7: TODO ...
-
-//
-// POST /ex8/bookstores
-//
-
-// Ex. 8: TODO ...
-
-//
-// PUT /ex9/persons
-//
-
-// Ex. 9: TODO ...
-
-//
-// DELETE /ex10/persons/:id
-//
-
-// Ex. 10: TODO ...
 
 app.listen(PORT, () => {
     console.log(`Bookstore API is running on port: ${PORT}`);

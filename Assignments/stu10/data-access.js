@@ -1,23 +1,16 @@
 //
 // File: data-access.js
-// Date: 6/30/2022
+// Date: 7/15/2022
 // Desc: CommonJS module that contains our data access code.
 //
 
-const { Pool } = require("pg");
+const { pool } = require("../../postgres-pool");
+const currencyFormatter = require('currency-formatter');
 
-const pool = new Pool({
-  user: "postgres",
-  password: "Ihgdp51505150!",
-  database: "stu0",
-  host: "localhost",
-  port: 5432,
-});
-
-exports.getPerson = async (personId) => {
+module.exports.getAccoutTypes = async () => {
     let retval = null;
     try {
-        // TODO ...
+       // TODO...
     } catch (err) {
         console.error(err);
     }
