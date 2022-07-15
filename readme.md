@@ -10,7 +10,7 @@ Assignments are located [here](./Assignments.md).
 
 # Notes
 - `api.template.js` is a file that can be used to start building your Express API
-- Be sure to run `create-bookstore-db.sql` in your student database (if you haven't already)
+- Be sure to run `create-banking-db.sql` in your student database (if you haven't already)
 
 # Videos
 - [What is an API (7m)](https://youtu.be/Yzx7ihtCGBs)
