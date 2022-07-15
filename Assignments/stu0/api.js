@@ -35,9 +35,19 @@ app.get('/ex1/account-types/', cors(corsOptions), async (req, res) => {
 // GET /ex2/account-types/
 //
 
-app.get('/ex1/transaction-types/', cors(corsOptions), async (req, res) => { 
+app.get('/ex2/transaction-types/', cors(corsOptions), async (req, res) => { 
     const transactionTypes = await dataAccess.getTransactionTypes();
     res.send(transactionTypes);
+});
+
+//
+// GET /ex3/account-types?dobFilterYear=1972
+//
+
+app.get('/ex3/users/', cors(corsOptions), async (req, res) => { 
+    let dobFilterYear = req.query['dobFilterYear']
+    const users = await dataAccess.getUsersDobFilter(dobFilterYear);
+    res.send(users);
 });
 
 

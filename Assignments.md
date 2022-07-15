@@ -5,11 +5,13 @@ We will build an Express that connects to a Postgres database. The web API will 
 ```
 GET http://localhost:5150/ex1/account-types/
 GET http://localhost:5150/ex2/transaction-types/
-GET http://localhost:5150/ex3/account-types/
+GET http://localhost:5150/ex3/users?dobFilterYear=1972
 ...
 ```
 
-Run the `SQL\create-banking-db.sql` script in a local Postgres database and be sure to update/create `postgres-pool.js` to connect to this banking database.
+Run the `SQL\create-banking-db.sql` script in a local Postgres database and be sure to update/create `postgres-pool.js` to connect to this banking database.  This script creates the following database:
+
+![](./docs/bank-erd.png)
 
 ```
 const { Pool } = require("pg");
@@ -63,7 +65,100 @@ Create the following API endpoint:
 
 ```
 Method: GET
+URL:  http://localhost:5150/ex3/users?dobFilterYear=1972
+BODY: None
+```
+
+This endpoint returns ALL the users that have been born after the year 1972.
+
+Output:
+
+```
+[
+  {
+    "transaction_type_id": 1,
+    "the_type": "deposit"
+  },
+  {
+    "transaction_type_id": 2,
+    "the_type": "withdraw"
+  }
+]
+```
+
+# Ex. 3 Get Users
+Create the following API endpoint:
+
+```
+Method: GET
 URL:  http://localhost:5150/ex2/transaction-types/
+BODY: None
+```
+
+Output:
+```
+[
+  {
+    first_name: 'Bob',
+    last_name: 'Marley',
+    dob: 1975-01-29T05:00:00.000Z,
+    bank_user_id: 2
+  },
+  {
+    first_name: 'Charlies',
+    last_name: 'Daniels',
+    dob: 1973-08-29T04:00:00.000Z,
+    bank_user_id: 3
+  }
+]
+```
+
+# Ex 4. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Database views provide abstractions over our data.  Views help us by combining many tables into one virtual table and allow us to see related data easier.  Create a view called `view_users` that joins the following tables:
+- account
+- bank_user
+- account_type
+
+```
+create view view_users as 
+    select 
+      a.account_id,
+      bu.bank_user_id,
+      at.account_type_id,
+      a.create_date,
+      bu.first_name,
+      bu.last_name,
+      bu.dob,
+      at.account_name
+    from account a
+      join bank_user TODO...
+      join account_type TODO...
+
+```
+
+Once the view has been created, we can query the view as if it were a database table (e.g. `select * from view_users`).
+
+Create the following API endpoint:
+
+```
+Method: GET
+URL:  http://localhost:5150/ex3/users/
 BODY: None
 ```
 
@@ -83,5 +178,3 @@ Output:
   }
 ]
 ```
-
-
