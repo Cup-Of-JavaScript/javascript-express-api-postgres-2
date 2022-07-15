@@ -9,6 +9,16 @@ const { pool } = require("../../postgres-pool");
 const SELECT_ACCOUNT_TYPES = "select * from account_type;";
 const SELECT_TRANSACTION_TYPES = "select * from transaction_type;"
 const SELECT_USERS_DOB_FILTER = "select * from bank_user where dob > $1";
+const SELECT_ACCOUNTS_FOR_USER = `
+    select 
+        account_id, account_name
+    from 
+        account a
+        join bank_user bu on a.bank_user_id = bu.bank_user_id
+        join account_type at on a.account_type_id = at.account_type_id
+    where 
+        bu.bank_user_id = $1`
+    
 
 module.exports.getAccoutTypes = async () => {
     let retval = null;
@@ -44,4 +54,12 @@ module.exports.getUsersDobFilter = async (filterYear) => {
     return retval;
 }
 
-
+module.exports.getAccountsForUser = async (userId) => {
+    try {
+        let r = await pool.query(SELECT_ACCOUNTS_FOR_USER, [userId]);
+        retval = r.rows;
+    } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}

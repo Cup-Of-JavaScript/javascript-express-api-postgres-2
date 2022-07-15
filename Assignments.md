@@ -117,12 +117,38 @@ Output:
 ]
 ```
 
-# Ex 4. 
+# Ex 4. Get Accounts for User
+Create the following API endpoint:
+
+```
+Method: GET
+URL:  http://localhost:5150/ex4/users/{bankUserId}/accounts
+BODY: None
+```
+
+This endpoint returns all the accounts for the `bankUserId` specified in the Url.
+
+Output:
+`http://localhost:5150/ex4/users/1/accounts`
+```
+[
+  {
+    "account_id": 1,
+    "account_name": "checking"
+  },
+  {
+    "account_id": 2,
+    "account_name": "savings"
+  },
+  {
+    "account_id": 3,
+    "account_name": "retirement"
+  }
+]
+```
 
 
-
-
-
+# Ex 5. 
 
 
 

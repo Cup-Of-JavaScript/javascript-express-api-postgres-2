@@ -50,7 +50,14 @@ app.get('/ex3/users/', cors(corsOptions), async (req, res) => {
     res.send(users);
 });
 
+//
+// GET /ex4/users/:id/accounts
+//
 
+app.get('/ex4/users/:id/accounts', cors(corsOptions), async (req, res) => { 
+    const accounts = await dataAccess.getAccountsForUser(req.params['id'])
+    res.send(accounts);
+});
 
 
 

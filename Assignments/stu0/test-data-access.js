@@ -9,7 +9,7 @@ const main = async () => {
         dob: "8/29/1970"
     }
 
-    let r = await dataAccess.getUsersDobFilter(1972)
+    let r = await dataAccess.getAccountsForUser(1)
     console.log(r)
     process.exit()
 }
