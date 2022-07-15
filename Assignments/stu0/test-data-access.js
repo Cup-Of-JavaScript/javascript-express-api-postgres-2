@@ -9,7 +9,7 @@ const main = async () => {
         dob: "8/29/1970"
     }
 
-    let r = await dataAccess.getAccountsForUser(1)
+    let r = await dataAccess.getTransactionsForDateRange('3/1/2022', '4/1/2022');
     console.log(r)
     process.exit()
 }

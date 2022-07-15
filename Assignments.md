@@ -117,7 +117,7 @@ Output:
 ]
 ```
 
-# Ex 4. Get Accounts for User
+# Ex. 4 Get Accounts for User
 Create the following API endpoint:
 
 ```
@@ -148,15 +148,61 @@ Output:
 ```
 
 
-# Ex 5. 
+# Ex. 5 Get Transactions Date Range
+Create the following API endpoint:
+
+```
+Method: GET
+URL:  http://localhost:5150/ex5/transactions?startDate={startDate}&endDate={endDate}
+BODY: None
+```
+
+This endpoint returns all the transactions from the `transaction` table that fall in the specified date range.
+
+Output:
+`http://localhost:5150/ex5/transactions?startDate=3/1/2022&endDate=4/1/2022`
+```
+[
+  {
+    "transaction_id": 11,
+    "account_id": 5,
+    "transaction_type_id": 1,
+    "dollar_amount": "$100.00",
+    "transaction_date": "2022-03-04T05:00:00.000Z"
+  },
+  {
+    "transaction_id": 16,
+    "account_id": 3,
+    "transaction_type_id": 1,
+    "dollar_amount": "$30.00",
+    "transaction_date": "2022-03-01T05:00:00.000Z"
+  },
+  {
+    "transaction_id": 17,
+    "account_id": 3,
+    "transaction_type_id": 1,
+    "dollar_amount": "$30.00",
+    "transaction_date": "2022-03-02T05:00:00.000Z"
+  },
+  {
+    "transaction_id": 18,
+    "account_id": 3,
+    "transaction_type_id": 1,
+    "dollar_amount": "$30.00",
+    "transaction_date": "2022-03-03T05:00:00.000Z"
+  },
+  {
+    "transaction_id": 19,
+    "account_id": 3,
+    "transaction_type_id": 2,
+    "dollar_amount": "$3.00",
+    "transaction_date": "2022-03-04T05:00:00.000Z"
+  }
+]
+```
 
 
-
-
-
-
-
-
+# Ex. 6
 
 
 

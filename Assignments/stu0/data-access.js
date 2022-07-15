@@ -18,6 +18,7 @@ const SELECT_ACCOUNTS_FOR_USER = `
         join account_type at on a.account_type_id = at.account_type_id
     where 
         bu.bank_user_id = $1`
+const SELECT_TRANSACTIONS_FOR_DATE_RANGE = `select * from transaction where transaction_date between $1 and $2;`
     
 
 module.exports.getAccoutTypes = async () => {
@@ -57,6 +58,16 @@ module.exports.getUsersDobFilter = async (filterYear) => {
 module.exports.getAccountsForUser = async (userId) => {
     try {
         let r = await pool.query(SELECT_ACCOUNTS_FOR_USER, [userId]);
+        retval = r.rows;
+    } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}
+
+module.exports.getTransactionsForDateRange = async (startDate, endDate) => {
+    try {
+        let r = await pool.query(SELECT_TRANSACTIONS_FOR_DATE_RANGE, [startDate, endDate]);
         retval = r.rows;
     } catch (err) {
         console.error(err);
