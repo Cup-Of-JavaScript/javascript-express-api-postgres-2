@@ -2,8 +2,8 @@ const { Pool } = require("pg");
 
 exports.pool = new Pool({
     user: "postgres",
-    password: "xxx",  // <== Replace with your password.
-    database: "stu0", // <=== Check database name.
+    password: "xxx",     // <== Replace with your password.
+    database: "banking", // <=== Does this match your database name???
     host: "localhost",
     port: 5432,
   });
