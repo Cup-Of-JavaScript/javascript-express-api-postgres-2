@@ -1,4 +1,4 @@
-# JavaScript Express API Postgress
+# JavaScript Express API Postgress 2
 
 Assignments are located [here](./Assignments.md).
 

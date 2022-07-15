@@ -1,4 +1,4 @@
-# JavaScript Express API Postgres Assignments
+# JavaScript Express API Postgres 2 Assignments
 
 We will build an Express that connects to a Postgres database. The web API will contain 10 endpoints and model a Bank.  Each exercise corresponds to an API endpoint.  For example:
 
