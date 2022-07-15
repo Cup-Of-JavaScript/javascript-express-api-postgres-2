@@ -12,7 +12,7 @@ const dataAccess = require('./data-access');
 const PORT = 5150;
 const app = express();
 
-let corsOptions = {
+const corsOptions = {
     origin: ['http://localhost:3001', 'http://localhost:3000'],
     optionsSuccessStatus: 200
 }
@@ -45,7 +45,7 @@ app.get('/ex2/transaction-types/', cors(corsOptions), async (req, res) => {
 //
 
 app.get('/ex3/users/', cors(corsOptions), async (req, res) => { 
-    let dobFilterYear = req.query['dobFilterYear']
+    const dobFilterYear = req.query['dobFilterYear']
     const users = await dataAccess.getUsersDobFilter(dobFilterYear);
     res.send(users);
 });
@@ -64,8 +64,8 @@ app.get('/ex4/users/:id/accounts', cors(corsOptions), async (req, res) => {
 //
 
 app.get('/ex5/transactions', cors(corsOptions), async (req, res) => { 
-    let endDate = req.query['endDate']
-    let startDate = req.query['startDate']
+    const endDate = req.query['endDate']
+    const startDate = req.query['startDate']
     const transactions = await dataAccess.getTransactionsForDateRange(startDate, endDate)
     res.send(transactions);
 });
@@ -79,15 +79,14 @@ app.get('/ex6/accounts/:accountId/balance', cors(corsOptions), async (req, res) 
     res.send(balance);
 });
 
-
 //
 // GET /ex7/accounts/:accountId/transactions?startDate={startDate}&endDate={endDate}
 //
 
 app.get('/ex7/accounts/:accountId/transactions', cors(corsOptions), async (req, res) => { 
-    let endDate = req.query['endDate']
-    let startDate = req.query['startDate']
-    let accountId = req.params['accountId']
+    const endDate = req.query['endDate']
+    const startDate = req.query['startDate']
+    const accountId = req.params['accountId']
     const transactions = await dataAccess.getAccountTransactionsForDateRange(accountId, startDate, endDate)
     res.send(transactions);
 });
