@@ -5,11 +5,11 @@ Assignments are located [here](./Assignments.md).
 # Getting Started
 - Clone this repo
 - Install dependencies: `npm install` (execute in the same directory as `package.json` file)
-- Create file: `postgres-pool.js` from file: `postgres-pool.js.template`
+- Create file: `postgres-pool.js` from file: [postgres-pool.js.template](./postgres-pool.js.template)
   - Update `postgres-pool.js` with your database password and check database name
 
 # Notes
-- `api.template.js` is a file that can be used to start building your Express API
+- [api.template.js](./api.template.js) is a file that can be used to start building your Express API
 - Run `create-banking-db.sql` in your student database (if you haven't already)
 
 # Videos
