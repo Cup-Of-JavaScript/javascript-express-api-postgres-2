@@ -6,7 +6,7 @@
 const dataAccess = require('./data-access');
 
 const main = async () => {
-    let dob = '1970-08-29'
+    let dob = '1970'
     let r = await dataAccess.getUsers(dob)
     console.log(r)
     process.exit()
