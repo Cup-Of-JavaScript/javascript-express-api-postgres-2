@@ -36,8 +36,8 @@ app.get('/ex2/transaction-types', cors(corsOptions), async (req,res) => {
 });
 
 app.get('/ex3/users', cors(corsOptions), async (req,res) => {
-    let usersYear = req.query['dobFilterYear']
-    let users = await dataAccess.getUsersByDob()
+    let dobFilterYear = req.query['dobFilterYear']
+    let users = await dataAccess.getUsersByDob(dobFilterYear)
     res.send(users)
 });
 
