@@ -45,6 +45,14 @@ app.get('/ex3/users/', cors(corsOptions), async (req, res) => {
      res.send(result);
 });
 
+
+// GET /ex4/users/{bankUserId}/accounts
+app.get('/ex4/users/:id', cors(corsOptions), async (req, res) => { 
+    let bankUserId = req.params['id'];
+    let result = await dataAccess.getAccounts(bankUserId)
+    res.send(result);
+});
+
 app.listen(PORT, () => {
     console.log(`Bookstore API is running on port: ${PORT}`);
 });
