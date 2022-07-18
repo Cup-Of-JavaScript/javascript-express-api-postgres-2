@@ -22,7 +22,9 @@ app.use(express.urlencoded());
 app.use(cors());
 
 //ex.1
-app.get('/ex1/persons', cors(corsOptions), async (req, res) => { 
+app.get('/ex1/account-types/', cors(corsOptions), async (req, res) => { 
+    let accounts = await dataAccess.getAccoutTypes()
+    res.send(accounts)
     // Parsing...
     // const id = req.params['id'];                 // Parse the path params from URL (e.g. /persons/1)
     // const queryParam1 = req.query['personType']  // Parse the query string from URL (e.g. ?personType=manager)
