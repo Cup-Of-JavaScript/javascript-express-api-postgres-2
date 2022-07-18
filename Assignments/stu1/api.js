@@ -34,6 +34,12 @@ app.get('/ex2/transaction-types/', cors(corsOptions), async (req, res) => {
     res.send(result)
 });
 
+app.get('/ex3/users/', cors(corsOptions), async (req, res) => {
+    let year = req.query['dobFilterYear']
+    let result = await dataAccess.getUsers(1970)
+    res.send(result)
+});
+
 app.listen(PORT, () => {
     console.log(`Banking API is running on port: ${PORT}`);
 });
