@@ -33,6 +33,12 @@ app.get('/ex2/transaction-types/', cors(corsOptions), async (req, res) => {
     res.send(transactions)
 });
 
+//ex.2
+app.get('/ex3/users/', cors(corsOptions), async (req, res) => { 
+    let allUsers = await dataAccess.getUser(req.query['dobFilterYear'])
+    res.send(allUsers)
+});
+
 app.listen(PORT, () => {
     console.log(`Bookstore API is running on port: ${PORT}`);
 });
