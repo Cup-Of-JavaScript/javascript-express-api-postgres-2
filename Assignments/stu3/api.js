@@ -1,6 +1,6 @@
 const cors = require('cors');
 const express = require('express');
-const { types } = require('pg');
+//const { types } = require('pg');
 const dataAccess = require('./data-access');
 
 const PORT = 5150;
@@ -21,10 +21,22 @@ app.use(cors());
 //
 
 app.get('/ex1/account-types/', cors(corsOptions), async (req, res) => { 
-    let types = await dataAccess.getAccoutTypes()
+    let types = await dataAccess.getAccountTypes()
     res.send(types)
-    //res.send('thest')
+    //res.send('test')
 });
+
+
+//
+// EX 2
+//
+
+app.get('/ex2/transaction-types/', cors(corsOptions), async (req, res) => { 
+    let transactions = await dataAccess.getTransactionTypes()
+    res.send(transactions)
+    //res.send('test')
+});
+
 
 app.listen(PORT, () => {
     console.log(`Banking API running on port: ${PORT}`);
