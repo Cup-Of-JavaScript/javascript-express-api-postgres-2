@@ -4,13 +4,16 @@
 // Desc: CommonJS module that contains our data access code.
 //
 
+const GET_ACCOUNT_TYPES = "Select * from account_type;"
+
 const { pool } = require("../../postgres-pool");
 const currencyFormatter = require('currency-formatter');
 
 module.exports.getAccoutTypes = async () => {
     let retval = null;
     try {
-       // TODO...
+        let r = await pool.query(GET_ACCOUNT_TYPES);
+        retval = r.rows;
     } catch (err) {
         console.error(err);
     }
