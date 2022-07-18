@@ -21,7 +21,7 @@ Assignments are located [here](./Assignments.md).
 - [HTTP ReST API Crash Course w/ Express (40m)](https://youtu.be/iYM2zFP3Zn0)
 
 # Transactions
-Transactions in Postgres are accomplished in the following manner:
+Client side transactions in Postgres are accomplished in the following manner:
 
 ```
 module.exports.getAccountData = async (accountId) => {
@@ -40,4 +40,26 @@ module.exports.getAccountData = async (accountId) => {
     }
     return retval;
 }
+```
+
+# API Endpoint Template
+```
+//
+// GET /persons/:id
+//
+
+app.get('/ex1/persons/:id', cors(corsOptions), async (req, res) => { 
+    // Parsing...
+    // const id = req.params['id'];                 // Parse the path params from URL (e.g. /persons/1)
+    // const queryParam1 = req.query['personType']  // Parse the query string from URL (e.g. ?personType=manager)
+    // const body = req.body;                       // Parse the the body from the request
+    
+    // Data access & business logic...
+    // const result = await dataAccess.<YOUR FUNCTION HERE>
+    
+    // Response...
+    // res.status(404); // 201, 400, 403, etc.
+    // res.send(<YOUR OBJECT HERE>);
+});
+
 ```
