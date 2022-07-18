@@ -16,6 +16,8 @@ const GET_USER_ACCOUNTS    =`select a.account_id,
     join account_type at on at.account_type_id = a.account_type_id
     where bank_user_id = $1`
 
+const TRANSACTION_DATE_RANGE = `select * from transaction where transaction_date >= $1 and transaction_date <= $2`
+
 const { pool } = require("../../postgres-pool");
 const currencyFormatter = require('currency-formatter');
 
@@ -56,6 +58,17 @@ exports.getUserAccounts = async (userId) => {
     let retval = null;
     try {
         let r = await pool.query(GET_USER_ACCOUNTS, [userId]);
+        retval = r.rows;
+    } catch (err) { 
+        console.error(err);
+    }
+    return retval;
+}
+
+exports.getTxnDateRange = async (startDate, endDate) => {
+    let retval = null;
+    try {
+        let r = await pool.query(TRANSACTION_DATE_RANGE, [startDate,endDate]);
         retval = r.rows;
     } catch (err) { 
         console.error(err);

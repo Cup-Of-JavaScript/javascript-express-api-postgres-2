@@ -46,6 +46,13 @@ app.get('/ex4/users/:id/accounts', cors(corsOptions), async (req,res) => {
     let persons = await dataAccess.getUserAccounts(personId)
     res.send(persons)
 });
+
+app.get('/ex5/transactions', cors(corsOptions), async (req,res) => {
+    let startDate = req.query['startDate'];
+    let endDate = req.query['endDate'];
+    let txns = await dataAccess.getTxnDateRange(startDate,endDate)
+    res.send(txns)
+});
  
 
 app.listen(PORT, () => {
