@@ -14,5 +14,17 @@
     "currency-formatter": "^1.5.9",
     "express": "^4.18.1",
     "pg": "^8.7.3"
-  }
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cup-Of-JavaScript/javascript-express-api-postgres-2.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Cup-Of-JavaScript/javascript-express-api-postgres-2/issues"
+  },
+  "homepage": "https://github.com/Cup-Of-JavaScript/javascript-express-api-postgres-2#readme"
 }
