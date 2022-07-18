@@ -25,6 +25,12 @@ app.use(cors());
 // API ENDPOINTS GO HERE...
 //
 
+app.get('/ex1/account-types', cors(corsOptions), async (req,res) => {
+    let accounts = await dataAccess.getAccountTypes()
+    res.send(accounts)
+});
+
+
 app.listen(PORT, () => {
-    console.log(`Bookstore API is running on port: ${PORT}`);
+    console.log(`Banking API is running on port: ${PORT}`);
 });
