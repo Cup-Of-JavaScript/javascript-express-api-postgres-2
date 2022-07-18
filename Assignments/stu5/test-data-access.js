@@ -6,8 +6,8 @@
 const dataAccess = require('./data-access');
 
 const main = async () => {
-    let dob = '1970'
-    let r = await dataAccess.getUsers(dob)
+    let bankUserId = 1
+    let r = await dataAccess.getAccounts(bankUserId)
     console.log(r)
     process.exit()
 }
