@@ -1,6 +1,6 @@
 # JavaScript Express API Postgres 2 Assignments
 
-We will build an Express that connects to a Postgres database. The web API will contain 8 endpoints and model a Bank.  Each exercise corresponds to an API endpoint.  For example:
+We will build an Express that connects to a Postgres database. The API contains 8 endpoints and models a simple Bank.  Each exercise corresponds to an API endpoint.  For example:
 
 ```
 GET http://localhost:5150/ex1/account-types/
@@ -29,6 +29,9 @@ exports.pool = new Pool({
 Create a collection with [Thunder Client](https://www.thunderclient.com/) and test every API endpoint.
 
 ![](./docs/thunder-client.png)
+
+
+Use the [api.template.js](api.template.js) as a template to create new API endpoints.
 
 # Ex. 1 Get All Account Types
 Create the following API endpoint:
@@ -201,8 +204,6 @@ Output:
 ```
 
 # Ex. 6 Get Account Balance
-This one is a doozie.
-
 Database views provide an abstraction over our data.  Views help us by combining many tables into one virtual table and allow us to see related data easier.  Views essentially flatten (denormalize) our data making it easy for us to understand. Create a view called `view_transactions` that joins the following tables:
 
 - transaction
@@ -254,10 +255,38 @@ Output:
 }
 ```
 
-The currency formatter has been included in this project:
+The currency formatter has been included in this project.
 
+#### Approach
+One possible approach:
 ```
-let retval = currencyFormatter.format(balance, { code: 'USD' });
+    let retval = { 
+        balance: 0, 
+        account: ""
+    }
+    try {
+        await pool.query("BEGIN")
+        // Get account name.
+        const accountNameRow = await pool.query // TODO...
+        retval.account = accountNameRow.rows[0].account_name;
+
+        // Determine total deposits.
+        const depositResult = await pool.query // TODO...
+        const sumDeposit = (depositResult.rows[0]) ? depositResult.rows[0].total_deposit : 0 // Inline if statement.
+
+        // Determine total withdrawls.
+        const withDrawResult = await pool.query // TODO...
+        const sumWithdrawl = (withDrawResult.rows[0]) ? withDrawResult.rows[0].total_withdrawl : 0  // Inline if statement.
+        const balance = sumDeposit - sumWithdrawl
+        
+        // Format results.
+        retval.balance = currencyFormatter.format(balance, { code: 'USD' });
+        await pool.query("COMMIT")
+    } catch (err) {
+        await pool.query("ROLLBACK")
+        console.error(err);
+    }
+    return retval;
 ```
 
 # Ex 7. Get Transactions for Range

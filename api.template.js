@@ -28,9 +28,9 @@ app.use(cors());
 
 app.get('/ex1/persons/:id', cors(corsOptions), async (req, res) => { 
     // Parsing...
-    // const id = req.params['id'];                 // Read path params from URL (e.g. /persons/1)
-    // const queryParam1 = req.query['personType']  // Read query params from URL (e.g. ?personType=manager)
-    // const body = req.body;                       // Read the body of the request
+    // const id = req.params['id'];                 // Parse the path params from URL (e.g. /persons/1)
+    // const queryParam1 = req.query['personType']  // Parse the query string from URL (e.g. ?personType=manager)
+    // const body = req.body;                       // Parse the the body from the request
     
     // Data access & business logic...
     // const result = await dataAccess.<YOUR FUNCTION HERE>
