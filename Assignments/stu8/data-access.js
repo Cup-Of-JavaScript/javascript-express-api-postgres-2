@@ -57,7 +57,7 @@ exports.getUserAccounts = async (userId) => {
     try {
         let r = await pool.query(GET_USER_ACCOUNTS, [userId]);
         retval = r.rows;
-    } catch (err) {
+    } catch (err) { 
         console.error(err);
     }
     return retval;

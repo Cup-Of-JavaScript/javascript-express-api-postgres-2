@@ -46,7 +46,7 @@ app.get('/ex4/users/:id/accounts', cors(corsOptions), async (req,res) => {
     let persons = await dataAccess.getUserAccounts(personId)
     res.send(persons)
 });
-
+ 
 
 app.listen(PORT, () => {
     console.log(`Banking API is running on port: ${PORT}`);
