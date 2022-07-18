@@ -6,7 +6,7 @@
 const dataAccess = require('./data-access');
 
 const main = async () => {
-    let r = await dataAccess.getAccoutTypes()
+    let r = await dataAccess.getTransactionTypes()
     console.log(r)
     process.exit()
 }
