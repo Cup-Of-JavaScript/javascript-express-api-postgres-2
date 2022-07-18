@@ -4,7 +4,7 @@
 // Desc: CommonJS module that contains our data access code.
 //
 
-const { pool } = require("../../postgres-pool");
+const { pool } = require("../../postgres-pool.js");
 const currencyFormatter = require('currency-formatter');
 
 //ex. 1
