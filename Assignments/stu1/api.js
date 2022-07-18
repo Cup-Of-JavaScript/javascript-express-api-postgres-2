@@ -29,6 +29,11 @@ app.get('/ex1/account-types/', cors(corsOptions), async (req, res) => {
     res.send(result)
 });
 
+app.get('/ex2/transaction-types/', cors(corsOptions), async (req, res) => {
+    let result = await dataAccess.getTransactionTypes()
+    res.send(result)
+});
+
 app.listen(PORT, () => {
     console.log(`Banking API is running on port: ${PORT}`);
 });
