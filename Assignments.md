@@ -9,7 +9,7 @@ GET http://localhost:5150/ex3/users?dobFilterYear=1972
 ...
 ```
 
-Run the `SQL\create-banking-db.sql` script in a local Postgres database and be sure to update/create `postgres-pool.js` to connect to this banking database.  This script creates the following database:
+Run the `SQL\create-banking-db.sql` script in a local Postgres database and be sure to update/create `postgres-pool.js` to connect to this banking database.  This script creates the following tables with data:
 
 ![](./docs/bank-erd.png)
 
