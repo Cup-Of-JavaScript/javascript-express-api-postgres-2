@@ -20,3 +20,18 @@ exports.getAccoutTypes = async () => {
     }
     return retval;
 }
+
+
+//ex. 2
+const Get_TransactionType = 'SELECT * FROM transaction_type;'
+
+exports.getTransactionTypes = async () => {
+    let retval = null;
+    try {
+        let r = await pool.query(Get_TransactionType);
+        retval = r.rows;
+    } catch (e) {
+        console.error(e);
+    }
+    return retval;
+}
