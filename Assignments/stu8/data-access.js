@@ -10,6 +10,12 @@ const GET_TRANSACTION_TYPE = `select * from transaction_type`
 
 const GET_USER_BY_DOB = `select * from bank_user where extract(YEAR from dob) > $1`
 
+const GET_USER_ACCOUNTS    =`select a.account_id,
+    at.account_name
+    from account a 
+    join account_type at on at.account_type_id = a.account_type_id
+    where bank_user_id = $1`
+
 const { pool } = require("../../postgres-pool");
 const currencyFormatter = require('currency-formatter');
 
@@ -39,6 +45,17 @@ exports.getUsersByDob = async (dobFilterYear) => {
     let retval = null;
     try {
         let r = await pool.query(GET_USER_BY_DOB, [dobFilterYear]);
+        retval = r.rows;
+    } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}
+
+exports.getUserAccounts = async (userId) => {
+    let retval = null;
+    try {
+        let r = await pool.query(GET_USER_ACCOUNTS, [userId]);
         retval = r.rows;
     } catch (err) {
         console.error(err);
