@@ -30,6 +30,12 @@ app.get('/ex1/account-types/', cors(corsOptions), async (req, res) => {
     res.send(result);
 });
 
+// GET /ex2/transaction-types/
+app.get('/ex2/transaction-types/', cors(corsOptions), async (req, res) => { 
+    let result = await dataAccess.getTransactionTypes()
+    res.send(result);
+});
+
 app.listen(PORT, () => {
     console.log(`Bookstore API is running on port: ${PORT}`);
 });
