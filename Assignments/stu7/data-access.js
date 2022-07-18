@@ -37,7 +37,7 @@ exports.getTransactionTypes = async () => {
 }
 
 //ex. 3
-const Get_Users = 'SELECT * FROM bank_user WHERE EXTRACT( YEAR FROM dob) > 1970;'
+const Get_Users = 'SELECT * FROM bank_user WHERE EXTRACT( YEAR FROM dob) > $1;'
 
 exports.getUser = async (dob_year) => {
     let retval = null;
