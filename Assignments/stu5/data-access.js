@@ -9,7 +9,7 @@ const currencyFormatter = require('currency-formatter');
 
 const GET_ACCOUNT_TYPES = 'select * from account_type'
 const GET_TRANSACTION_TYPES = 'select * from transaction_type'
-const GET_USERS = 'select * from bank_user bu where dob > $1'
+const GET_USERS = 'select * from bank_user bu where extract(YEAR from dob)  > $1'
 
 module.exports.getAccoutTypes = async () => {
     let retval = null;
