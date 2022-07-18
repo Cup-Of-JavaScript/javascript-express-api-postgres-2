@@ -1,7 +1,7 @@
 {
   "name": "javascript-express-api-postgres",
   "version": "1.0.0",
-  "description": "Assignments are located [here](./Assignments.md).",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
