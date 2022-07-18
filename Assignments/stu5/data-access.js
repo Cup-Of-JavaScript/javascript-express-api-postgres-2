@@ -7,10 +7,13 @@
 const { pool } = require("../../postgres-pool");
 const currencyFormatter = require('currency-formatter');
 
+const GET_ACCOUNT_TYPES = 'select * from account_type'
+
 module.exports.getAccoutTypes = async () => {
     let retval = null;
     try {
-       // TODO...
+        let r = await pool.query(GET_ACCOUNT_TYPES);
+        retval = r.rows;
     } catch (err) {
         console.error(err);
     }
