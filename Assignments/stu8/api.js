@@ -68,6 +68,14 @@ app.get('/ex7/accounts/:id/transactions', cors(corsOptions), async (req,res) => 
     res.send(txns)
 });
 
+app.post('/ex8/accounts/:id/transactions', cors(corsOptions), async (req,res) => {
+    let accountId = req.params['id'];
+    let txn = req.body;
+    let txnId = await dataAccess.addTxn(accountId, txn)
+    txn.txnId = txnId
+    res.send(txn);
+})
+
 app.listen(PORT, () => {
     console.log(`Banking API is running on port: ${PORT}`);
 });
