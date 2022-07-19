@@ -6,8 +6,9 @@
 const dataAccess = require('./data-access');
 
 const main = async () => {
-    let bankUserId = 1
-    let r = await dataAccess.getAccounts(bankUserId)
+    let startDate ='3/1/2022' 
+    let endDate = '4/1/2022'
+    let r = await dataAccess.getTransactions(startDate,endDate)
     console.log(r)
     process.exit()
 }

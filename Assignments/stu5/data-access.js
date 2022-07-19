@@ -18,6 +18,12 @@ from account a
 join bank_user bu on bu.bank_user_id = a.bank_user_id
 join account_type at on at.account_type_id=a.account_type_id
 where a.bank_user_id = $1`
+const GET_TRANSACTIONS = 
+`select * from transaction 
+where transaction_date between $1 and $2 
+order by transaction_date asc;`
+
+
 
 module.exports.getAccoutTypes = async () => {
     let retval = null;
@@ -56,6 +62,17 @@ module.exports.getAccounts = async (bankUserId) => {
     let retval = null;
     try {
         let r = await pool.query(GET_ACCOUNTS, [bankUserId]);
+        retval = r.rows;
+    } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}
+
+module.exports.getTransactions = async (startDate, endDate) => {
+    let retval = null;
+    try {
+        let r = await pool.query(GET_TRANSACTIONS, [startDate, endDate]);
         retval = r.rows;
     } catch (err) {
         console.error(err);
