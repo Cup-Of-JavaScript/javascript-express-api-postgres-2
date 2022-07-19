@@ -38,17 +38,21 @@ app.get('/ex2/transaction-types/', cors(corsOptions), async (req, res) => {
 });
 
 
-//
 // EX 3
-//
 
 app.get('/ex3/users/', cors(corsOptions), async (req, res) => { 
     let year = req.query ['dobFilterYear']
     let users = await dataAccess.getUsersByDob(1972)
     res.send(users)
-    //res.send('test')
-});
+})
 
+// EX 4
+
+app.get('/ex4/users/:id/accounts', cors(corsOptions), async (req, res) => { 
+    let userId = req.params['id']
+    let accounts = await dataAccess.getAccountsByUserId(userId)
+    res.send(accounts)
+})
 
 app.listen(PORT, () => {
     console.log(`Banking API running on port: ${PORT}`);
