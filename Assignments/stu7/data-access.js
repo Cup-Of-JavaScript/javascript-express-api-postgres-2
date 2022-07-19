@@ -49,3 +49,17 @@ exports.getUser = async (dob_year) => {
     }
     return retval;
 }
+
+//ex. 3
+const Get_Account = 'SELECT at.account_name, a.account_id FROM account_type at JOIN account a ON a.account_type_id = at.account_type_id WHERE a.bank_user_id = $1;'
+
+exports.getAccounts = async (userId) => {
+    let retval = null;
+    try {
+        let r = await pool.query(Get_Account, [userId]);
+        retval = r.rows;
+    } catch (e) {
+        console.error(e);
+    }
+    return retval;
+}
