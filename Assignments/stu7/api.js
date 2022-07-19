@@ -33,10 +33,16 @@ app.get('/ex2/transaction-types/', cors(corsOptions), async (req, res) => {
     res.send(transactions)
 });
 
-//ex.2
+//ex.3
 app.get('/ex3/users/', cors(corsOptions), async (req, res) => { 
     let allUsers = await dataAccess.getUser(req.query['dobFilterYear'])
     res.send(allUsers)
+});
+
+//ex.4
+app.get('/ex4/users/:id/accounts/', cors(corsOptions), async (req, res) => { 
+    let userAccounts = await dataAccess.getAccounts(req.params['id'])
+    res.send(userAccounts)
 });
 
 app.listen(PORT, () => {

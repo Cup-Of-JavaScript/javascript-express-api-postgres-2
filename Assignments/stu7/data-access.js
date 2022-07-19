@@ -50,7 +50,7 @@ exports.getUser = async (dob_year) => {
     return retval;
 }
 
-//ex. 3
+//ex. 4
 const Get_Account = 'SELECT at.account_name, a.account_id FROM account_type at JOIN account a ON a.account_type_id = at.account_type_id WHERE a.bank_user_id = $1;'
 
 exports.getAccounts = async (userId) => {
