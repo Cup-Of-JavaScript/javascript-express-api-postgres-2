@@ -53,6 +53,15 @@ app.get('/ex4/users/:id', cors(corsOptions), async (req, res) => {
     res.send(result);
 });
 
+
+// GET /ex5/transactions?startDate=3/1/2022&endDate=4/1/2022
+app.get('/ex5/transactions/', cors(corsOptions), async (req, res) => { 
+    let startDate = req.query['startDate'];
+    let endDate = req.query['endDate'];
+    let result = await dataAccess.getTransactions(startDate, endDate)
+    res.send(result);
+});
+
 app.listen(PORT, () => {
     console.log(`Bookstore API is running on port: ${PORT}`);
 });
