@@ -62,6 +62,13 @@ app.get('/ex5/transactions/', cors(corsOptions), async (req, res) => {
     res.send(result);
 });
 
+// GET /ex6/account/{accountId}/balance
+app.get('/ex6/account/:id/balance', cors(corsOptions), async (req, res) => { 
+    let accountId = req.params['id'];
+    let result = await dataAccess.getAccountBalance(accountId)
+    res.send(result);
+});
+
 app.listen(PORT, () => {
     console.log(`Bookstore API is running on port: ${PORT}`);
 });
