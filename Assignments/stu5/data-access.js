@@ -35,6 +35,16 @@ const GET_ACCOUNT_TYPE_WITHDRAWAL =
  from view_transactions 
  where account_id = $1 
  and the_type = 'withdraw' `
+ const GET_TRANSACTIONS_FOR_ACCOUNT = 
+ `select 
+ transaction_id,
+ dollar_amount,
+ transaction_date,
+ the_type
+ from view_transactions 
+ where transaction_date between $2 and $3 
+ and account_id = $1 
+ order by transaction_date asc;`
 
 
 
@@ -122,6 +132,18 @@ module.exports.getAccountBalance = async (accountId) => {
  
     } catch (err) {
         await pool.query("ROLLBACK")
+        console.error(err);
+    }
+    return retval;
+}
+
+
+module.exports.getTransactionsForAccount = async (accountId, startDate, endDate) => {
+    let retval = null;
+    try {
+        let r = await pool.query(GET_TRANSACTIONS_FOR_ACCOUNT, [accountId, startDate, endDate]);
+        retval = r.rows;
+    } catch (err) {
         console.error(err);
     }
     return retval;

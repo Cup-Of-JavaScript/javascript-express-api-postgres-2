@@ -3,13 +3,12 @@
 // Desc: Simple driver to test our data access layer.
 //
 
-const dataAccess = require('./data-access');
+const dataAccess = require("./data-access");
 
 const main = async () => {
-    //let accountId = 1
-    let r = await dataAccess.getAccountBalance(1)
-    console.log(r)
-    process.exit()
-}
+  let r = await dataAccess.getTransactionsForAccount(1, "1/1/2022", "1/4/2022");
+  console.log(r);
+  process.exit();
+};
 
-main()
+main();

@@ -69,6 +69,15 @@ app.get('/ex6/account/:id/balance', cors(corsOptions), async (req, res) => {
     res.send(result);
 });
 
+// GET /ex7/account/{accountId}/transactions?startDate={startDate}&endDate={endDate}
+app.get('/ex7/accounts/:id/transactions', cors(corsOptions), async (req, res) => { 
+    let accountId = req.params['id']
+    let startDate = req.query['startDate'];
+    let endDate = req.query['endDate'];
+    let result = await dataAccess.getTransactionsForAccount(accountId, startDate, endDate)
+    res.send(result);
+});
+
 app.listen(PORT, () => {
     console.log(`Bookstore API is running on port: ${PORT}`);
 });
