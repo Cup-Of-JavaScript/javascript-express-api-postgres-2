@@ -14,9 +14,10 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
 
-app.get('/ex2/transaction-types/', cors(corsOptions), async (req,res) => {
-    let accounts = await dataAccess.getTransactionTypes()
-    res.send(accounts)
+app.get('/ex3/users/', cors(corsOptions), async (req,res) => {
+    let filter_year = req.query['filter_year']
+    let users = await dataAccess.getUsersDob(filter_year)
+    res.send(users)
 });
 
 app.listen(PORT, () => {
