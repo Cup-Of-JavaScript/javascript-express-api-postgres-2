@@ -9,14 +9,15 @@ const GET_TRANSACTION_TYPES = "Select * from transaction_type;"
 const GET_USER_BY_YEAR = "Select * from bank_user where extract(YEAR from dob) > 1970"
 const GET_USER_ACCOUNT = `Select a.account_id, at.account_name from account a 
 join account_type at on at.account_type_id = a.account_type_id where bank_user_id = $1`
+const GET_TRANSACTION_DATES = `Select * from transaction where transaction_date > = $1 and transaction_date > = $2`
 
 const { pool } = require("../../postgres-pool");
 const currencyFormatter = require('currency-formatter');
 
-exports.getUserAccount = async (userId)  => {
+exports.getTransactionDates = async (startDate, endDate)  => {
     let retval = null;
     try {
-        let r = await pool.query(GET_USER_ACCOUNT, [userId]);
+        let r = await pool.query(GET_TRANSACTION_DATES, [startDate, endDate]);
         retval = r.rows;
     } catch (err) {
         console.error(err);
