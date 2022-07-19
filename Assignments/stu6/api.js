@@ -14,10 +14,11 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
 
-app.get('/ex4/users/:id/accounts', cors(corsOptions), async (req,res) => {
-    let UID = req.params['id']
-    let users = await dataAccess.getUsersAcc(UID)
-    res.send(users)
+app.get('/ex5/transactions', cors(corsOptions), async (req,res) => {
+    let startDate = req.query['startDate'];
+    let endDate = req.query['endDate'];
+    let daterange = await dataAccess.getDates(startDate,endDate)
+    res.send(daterange)
 });
 
 app.listen(PORT, () => {
