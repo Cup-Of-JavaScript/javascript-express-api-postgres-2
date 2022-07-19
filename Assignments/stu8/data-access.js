@@ -18,6 +18,12 @@ const GET_USER_ACCOUNTS    =`select a.account_id,
 
 const TRANSACTION_DATE_RANGE = `select * from transaction where transaction_date >= $1 and transaction_date <= $2`
 
+const GET_ACCOUNT_NAME = `select account_name from view_transactions where account_id = $1`
+
+const GET_DEPOSITS = `select sum(dollar_amount) as total_deposit from view_transactions where account_id = $1 and the_type = 'deposit' `
+
+const GET_WITHDRAWALS = `select sum(dollar_amount) as total_withdrawl from view_transactions where account_id = $1 and the_type = 'withdraw'`
+
 const { pool } = require("../../postgres-pool");
 const currencyFormatter = require('currency-formatter');
 
@@ -71,6 +77,39 @@ exports.getTxnDateRange = async (startDate, endDate) => {
         let r = await pool.query(TRANSACTION_DATE_RANGE, [startDate,endDate]);
         retval = r.rows;
     } catch (err) { 
+        console.error(err);
+    }
+    return retval;
+}
+
+exports.getBalance = async (accountId) => {
+    let retval = { 
+        balance: 0, 
+        account: ""
+    }
+    try {
+        await pool.query("BEGIN")
+        
+        // Get account name.
+        const accountNameRow = await pool.query(GET_ACCOUNT_NAME, [accountId]);
+        retval.account = accountNameRow.rows[0].account_name;
+        
+        // Determine total deposits.
+        const depositResult = await pool.query(GET_DEPOSITS, [accountId])
+        const sumDeposit = (depositResult.rows[0]) ? depositResult.rows[0].total_deposit : 0 // Inline if statement.
+        
+
+        // Determine total withdrawls.
+        const withDrawResult = await pool.query(GET_WITHDRAWALS,[accountId])
+        const sumWithdrawl = (withDrawResult.rows[0]) ? withDrawResult.rows[0].total_withdrawl : 0  // Inline if statement.
+        const balance = sumDeposit - sumWithdrawl
+        
+
+        // Format results.
+        retval.balance = currencyFormatter.format(balance, { code: 'USD' });
+        await pool.query("COMMIT")
+    } catch (err) {
+        await pool.query("ROLLBACK")
         console.error(err);
     }
     return retval;
