@@ -46,8 +46,8 @@ app.get('/ex4/users/:id/accounts/', cors(corsOptions), async (req, res) => {
 });
 
 //ex.5
-app.get('/ex5/transactions?startDate=3/1/2022&endDate=4/1/2022', cors(corsOptions), async (req, res) => { 
-    let transactions = await dataAccess.getTransactions(req.query['dateOne'],  req.query['dateTwo'])
+app.get('/ex5/transactions/', cors(corsOptions), async (req, res) => { 
+    let transactions = await dataAccess.getTransactions(req.query['startDate'],req.query['endDate'])
     res.send(transactions)
 });
 
