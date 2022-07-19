@@ -14,9 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
 
-app.get('/ex3/users/', cors(corsOptions), async (req,res) => {
-    let filter_year = req.query['filter_year']
-    let users = await dataAccess.getUsersDob(filter_year)
+app.get('/ex4/users/:id/accounts', cors(corsOptions), async (req,res) => {
+    let UID = req.params['id']
+    let users = await dataAccess.getUsersAcc(UID)
     res.send(users)
 });
 
