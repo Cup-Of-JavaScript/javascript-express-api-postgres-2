@@ -77,3 +77,17 @@ exports.getTransactions = async (dateOne, dateTwo) => {
     }
     return retval;
 }
+
+//ex. 6
+const Get_Balance = 'SELECT * FROM transaction WHERE transaction_date BETWEEN $1 AND $2 ORDER BY transaction_date'
+
+exports.getAccountBalances = async () => {
+    let retval = null;
+    try {
+        let r = await pool.query(Get_Balance);
+        retval = r.rows;
+    } catch (e) {
+        console.error(e);
+    }
+    return retval;
+}
