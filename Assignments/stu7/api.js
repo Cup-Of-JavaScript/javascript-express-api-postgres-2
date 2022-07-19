@@ -53,8 +53,8 @@ app.get('/ex5/transactions/', cors(corsOptions), async (req, res) => {
 
 //ex.6
 app.get('/ex6/account/:id/balance', cors(corsOptions), async (req, res) => { 
-    let transactions = await dataAccess.getTransactions(req.query['startDate'],req.query['endDate'])
-    res.send(transactions)
+    let accountBalances = await dataAccess.getAccountBalances()
+    res.send(accountBalances)
 });
 
 

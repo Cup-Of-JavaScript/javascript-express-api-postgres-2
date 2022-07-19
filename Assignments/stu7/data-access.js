@@ -79,7 +79,7 @@ exports.getTransactions = async (dateOne, dateTwo) => {
 }
 
 //ex. 6
-const Get_Balance = 'SELECT * FROM transaction WHERE transaction_date BETWEEN $1 AND $2 ORDER BY transaction_date'
+const Get_Balance = ''
 
 exports.getAccountBalances = async () => {
     let retval = null;
