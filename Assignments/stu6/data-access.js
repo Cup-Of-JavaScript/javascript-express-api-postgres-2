@@ -1,12 +1,12 @@
 const { pool } = require("../../postgres-pool");
 const currencyFormatter = require('currency-formatter');
 
-const User_Dob = 'select * from bank_user where extract(YEAR from dob) >= $1'
+const Tran_Date = 'select * from transaction where transaction_date between $1 and $2 order by transaction_date asc'
 
-exports.getUsersDob = async (filter_year) => {
+exports.getDates = async (startDate, endDate) => {
     let retval = null;
     try {
-       let r = await pool.query (User_Dob,[filter_year]) 
+       let r = await pool.query (Tran_Date,[startDate, endDate]) 
        retval = r.rows;
     } catch (err) {
         console.error(err);
