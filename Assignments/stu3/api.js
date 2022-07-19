@@ -49,8 +49,8 @@ app.get('/ex3/users/', cors(corsOptions), async (req, res) => {
 // EX 4
 
 app.get('/ex4/users/:id/accounts', cors(corsOptions), async (req, res) => { 
-    let userId = req.query ['id']
-    let accounts = await dataAccess.getAccountsByUserId(1)
+    let userId = req.params['id']
+    let accounts = await dataAccess.getAccountsByUserId(userId)
     res.send(accounts)
 })
 
