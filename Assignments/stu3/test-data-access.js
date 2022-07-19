@@ -6,7 +6,7 @@
 const dataAccess = require('./data-access');
 
 const main = async () => {
-    let r = await dataAccess.getUsersByDob(1972)
+    let r = await dataAccess.getAccountsByUserId(1)
     console.log(r)
     process.exit()
 }
