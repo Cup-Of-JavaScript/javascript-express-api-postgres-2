@@ -24,6 +24,8 @@ const GET_DEPOSITS = `select sum(dollar_amount) as total_deposit from view_trans
 
 const GET_WITHDRAWALS = `select sum(dollar_amount) as total_withdrawl from view_transactions where account_id = $1 and the_type = 'withdraw'`
 
+const GET_TRANSACTION_DATE_RANGE_BY_USER = `select * from view_transactions where bank_user_id = $1 and transaction_date >= $2 and transaction_date <= $3 order by transaction_date asc`
+
 const { pool } = require("../../postgres-pool");
 const currencyFormatter = require('currency-formatter');
 
@@ -110,6 +112,17 @@ exports.getBalance = async (accountId) => {
         await pool.query("COMMIT")
     } catch (err) {
         await pool.query("ROLLBACK")
+        console.error(err);
+    }
+    return retval;
+}
+
+exports.getTxnDateRangeByUser = async (userId, startDate, endDate) => {
+    let retval = null;
+    try {
+        let r = await pool.query(GET_TRANSACTION_DATE_RANGE_BY_USER, [userId, startDate,endDate]);
+        retval = r.rows;
+    } catch (err) { 
         console.error(err);
     }
     return retval;

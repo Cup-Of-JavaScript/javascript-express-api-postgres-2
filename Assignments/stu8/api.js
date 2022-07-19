@@ -60,7 +60,13 @@ app.get('/ex6/accounts/:id/balance', cors(corsOptions), async (req,res) => {
     res.send(balance)
 });
 
-
+app.get('/ex7/accounts/:id/transactions', cors(corsOptions), async (req,res) => {
+    let userId = req.params['id'];
+    let startDate = req.query['startDate'];
+    let endDate = req.query['endDate'];
+    let txns = await dataAccess.getTxnDateRangeByUser(userId,startDate,endDate)
+    res.send(txns)
+});
 
 app.listen(PORT, () => {
     console.log(`Banking API is running on port: ${PORT}`);
