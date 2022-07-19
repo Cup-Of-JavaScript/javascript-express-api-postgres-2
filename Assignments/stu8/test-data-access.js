@@ -6,7 +6,7 @@
 const dataAccess = require('./data-access');
 
 const main = async () => {
-    let r = await dataAccess.getBalance(3)
+    let r = await dataAccess.getTxnDateRangeByUser(1, '1/1/2022', '3/1/2022')
     console.log(r)
     process.exit()
 }
