@@ -22,6 +22,20 @@ const GET_TRANSACTIONS =
 `select * from transaction 
 where transaction_date between $1 and $2 
 order by transaction_date asc;`
+const GET_ACCOUNT_NAME = ' select account_name from view_transactions where account_id=$1 '
+const GET_ACCOUNT_TYPE_DEPOSIT = 
+`select sum(dollar_amount) 
+as total_deposit 
+from view_transactions 
+where account_id = $1 
+and the_type = 'deposit'`
+const GET_ACCOUNT_TYPE_WITHDRAWAL =
+ `select sum(dollar_amount) 
+ as total_withdrawal 
+ from view_transactions 
+ where account_id = $1 
+ and the_type = 'withdraw' `
+
 
 
 
@@ -75,6 +89,39 @@ module.exports.getTransactions = async (startDate, endDate) => {
         let r = await pool.query(GET_TRANSACTIONS, [startDate, endDate]);
         retval = r.rows;
     } catch (err) {
+        console.error(err);
+    }
+    return retval;
+}
+
+module.exports.getAccountBalance = async (accountId) => {
+    let retval = { 
+        balance: 0, 
+        account: ""
+    }
+    try {
+        await pool.query("BEGIN")
+        // Get account name.
+        const accountNameRow = await pool.query(GET_ACCOUNT_NAME, [accountId]);
+        retval.account = accountNameRow.rows[0].account_name;
+
+         // Determine total deposits.
+         const depositResult = await pool.query(GET_ACCOUNT_TYPE_DEPOSIT, [accountId]);
+         const sumDeposit = (depositResult.rows[0]) ? depositResult.rows[0].total_deposit : 0 
+         //console.log(sumDeposit)
+
+         // Determine total withdrawls.
+        const withDrawResult = await pool.query (GET_ACCOUNT_TYPE_WITHDRAWAL, [accountId]);
+        const sumWithdrawl = (withDrawResult.rows[0]) ? withDrawResult.rows[0].total_withdrawal : 0 
+        const balance = sumDeposit - sumWithdrawl
+        console.log(sumWithdrawl)
+
+         // Format results.
+         retval.balance = currencyFormatter.format(balance, { code: 'USD' });
+         await pool.query("COMMIT")
+ 
+    } catch (err) {
+        await pool.query("ROLLBACK")
         console.error(err);
     }
     return retval;
