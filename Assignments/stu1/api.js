@@ -46,6 +46,14 @@ app.get('/ex4/users/:id/accounts/', cors(corsOptions), async (req, res) => {
     res.send(result)
 });
 
+app.get('/ex5/transactions/', cors(corsOptions), async (req, res) => {
+    let startDate = req.query['startDate']
+    let endDate = req.query['endDate']
+    let result = await dataAccess.getTransactionDateRange(startDate, endDate)
+    // startDate.endDate.result = result
+    res.send(result)
+});
+
 app.listen(PORT, () => {
     console.log(`Banking API is running on port: ${PORT}`);
 });
