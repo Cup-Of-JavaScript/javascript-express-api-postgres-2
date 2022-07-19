@@ -26,6 +26,8 @@ const GET_WITHDRAWALS = `select sum(dollar_amount) as total_withdrawl from view_
 
 const GET_TRANSACTION_DATE_RANGE_BY_USER = `select * from view_transactions where bank_user_id = $1 and transaction_date >= $2 and transaction_date <= $3 order by transaction_date asc`
 
+const ADD_TRANSACTION = `insert into transaction (account_id, transaction_type_id, dollar_amount, transaction_date) values ($1, $2, $3, $4) returning transaction_id`
+
 const { pool } = require("../../postgres-pool");
 const currencyFormatter = require('currency-formatter');
 
@@ -123,6 +125,17 @@ exports.getTxnDateRangeByUser = async (userId, startDate, endDate) => {
         let r = await pool.query(GET_TRANSACTION_DATE_RANGE_BY_USER, [userId, startDate,endDate]);
         retval = r.rows;
     } catch (err) { 
+        console.error(err);
+    }
+    return retval;
+}
+
+exports.addTxn = async (accountId, txn) => {
+    let retval = null;
+    try {
+        let r = await pool.query(ADD_TRANSACTION, [accountId, txn.transactionTypeId, txn.dollarAmount, txn.transactionDate]);
+        retval = r.rows;
+    } catch (err) {
         console.error(err);
     }
     return retval;

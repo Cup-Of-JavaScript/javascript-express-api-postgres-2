@@ -6,7 +6,13 @@
 const dataAccess = require('./data-access');
 
 const main = async () => {
-    let r = await dataAccess.getTxnDateRangeByUser(1, '1/1/2022', '3/1/2022')
+    let txn  = {
+        "transactionTypeId": 1,
+        "dollarAmount": 50,
+        "transactionDate": '06-06-22'
+        }
+    
+    let r = await dataAccess.addTxn(1, txn)
     console.log(r)
     process.exit()
 }
